@@ -4,6 +4,8 @@
 
 # Maven
 target/
+target
+img.png
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
