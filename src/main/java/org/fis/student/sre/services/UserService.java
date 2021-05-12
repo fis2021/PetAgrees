@@ -10,6 +10,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
 import static org.fis.student.sre.services.FileSystemService.getPathToFile;
 
 public class UserService {
@@ -24,9 +27,9 @@ public class UserService {
         userRepository = database.getRepository(User.class);
     }
 
-    public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
+    public static void addUser(String username, String password, String role, BufferedImage imageOfCertification) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
-        userRepository.insert(new User(username, encodePassword(username, password), role));
+        userRepository.insert(new User(username, encodePassword(username, password), role, imageOfCertification));
     }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
