@@ -39,7 +39,7 @@ public class AppointmentController {
         try {
             AppointmentService.addAppointment(usernamePetSitterField.getText(), usernameOwnerField.getText(), telephoneOwnerField.getMaximumIntegerDigits(), descriptionOwnerField.getText(), "processing", addressOwnerField.getText());
             appointmentMessage.setText("Appointment created successfully!");
-        } catch (AppointmentAlreadyExistsException e | UsernameAlreadyExistsException e) {
+        } catch (AppointmentAlreadyExistsException | UsernameAlreadyExistsException e) {
             appointmentMessage.setText(e.getMessage());
         }
     }

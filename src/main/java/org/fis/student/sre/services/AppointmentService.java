@@ -42,18 +42,20 @@ public class AppointmentService {
 
     public static void acceptAppointment(String usernamePetSitter, String usernameOwner, int telephoneOwner, String description, String status, String address) throws AppointmentAlreadyExistsException, UsernameAlreadyExistsException {
         for (Appointment appointment : appointmentRepository.find()) {
-            if (Objects.equals(usernamePetSitter, appointment.getUsernamePetSitter()))
+            if (Objects.equals(usernamePetSitter, appointment.getUsernamePetSitter())) {
                 appointmentRepository.insert(new Appointment(appointment.getUsernamePetSitter(), appointment.getUsernameOwner(), appointment.getTelephoneOwner(), appointment.getAddress(), appointment.getDescription(), "ACCEPTED"));
-            appointmentRepository.remove(appointment);
+                appointmentRepository.remove(appointment);
+            }
         }
 
     }
 
     public static void denyAppointment(String usernamePetSitter, String usernameOwner, int telephoneOwner, String description, String status, String address) throws AppointmentAlreadyExistsException, UsernameAlreadyExistsException {
         for (Appointment appointment : appointmentRepository.find()) {
-            if (Objects.equals(usernamePetSitter, appointment.getUsernamePetSitter()))
+            if (Objects.equals(usernamePetSitter, appointment.getUsernamePetSitter())) {
                 appointmentRepository.insert(new Appointment(appointment.getUsernamePetSitter(), appointment.getUsernameOwner(), appointment.getTelephoneOwner(), appointment.getAddress(), appointment.getDescription(), "DENIED"));
-            appointmentRepository.remove(appointment);
+                appointmentRepository.remove(appointment);
+            }
         }
 
     }
