@@ -1,6 +1,6 @@
 package org.fis.student.sre.exceptions;
 
-public class AppointmentAlreadyExistsExceptions {
+public class AppointmentAlreadyExistsException {
     private String usernamePetSitter;
     private String description;
 
