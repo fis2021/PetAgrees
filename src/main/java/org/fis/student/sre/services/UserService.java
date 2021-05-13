@@ -2,29 +2,35 @@ package org.fis.student.sre.services;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
-import org.fis.student.sre.exceptions.UsernameAlreadyExistsException;
+import org.fis.student.sre.exceptions.*;
+import org.fis.student.sre.model.Appointment;
 import org.fis.student.sre.model.User;
+import static  org.fis.student.sre.controllers.LoginController.getCurrentUser;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import static org.fis.student.sre.services.FileSystemService.getPathToFile;
 
 public class UserService {
 
     private static ObjectRepository<User> userRepository;
+    private static ObjectRepository<Appointment> appointmentRepository;
 
     public static void initDatabase() {
         Nitrite database = Nitrite.builder()
-                .filePath(getPathToFile("registration-example.db").toFile())
+                .filePath(getPathToFile("PetAgrees.db").toFile())
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
+        appointmentRepository = database.getRepository(Appointment.class);
     }
 
     public static void addUser(String username, String password, String role, BufferedImage imageOfCertification) throws UsernameAlreadyExistsException {
@@ -36,6 +42,22 @@ public class UserService {
         for (User user : userRepository.find()) {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
+        }
+    }
+
+    public static void checkCredentials(String username, String password) throws WrongPasswordException, NotExistingAccountException {
+        int username_found = 0;
+        for(User user : userRepository.find()){
+            if(Objects.equals(username, user.getUsername())){
+                username_found = 1;
+                String user_pass_entered = encodePassword(username, password); //encrypt argument password
+                if(!user_pass_entered.equals(user.getPassword())) {
+                    throw new WrongPasswordException();
+                }
+            }
+        }
+        if(username_found == 0){
+            throw new NotExistingAccountException();
         }
     }
 
@@ -59,6 +81,118 @@ public class UserService {
         }
         return md;
     }
+
+    public static ArrayList <Appointment> getAppointmentsList(String username) {
+        ArrayList <Appointment> s = new ArrayList<Appointment> (50);
+        for(User user : userRepository.find()){
+            if(Objects.equals(username, user.getUsername())){
+                if (user.getMax() > 50) {
+                    ArrayList <Appointment> aux = new ArrayList<Appointment> (user.getMax());
+                    s = aux;
+                }
+                for (Appointment ap: user.getAppointments()) {
+                    s.add(ap);
+                }
+            }
+        }
+        return s;
+    }
+
+    public static void addAppointmentInAppointmentsList(String username, Appointment appointment) throws AppointmentAlreadyExistsException {
+        checkAppointmentDoesNotAlreadyExist(appointment.getUsernamePetSitter(), appointment.getDescription());
+        for(User user : userRepository.find()){
+            if(Objects.equals(username, user.getUsername())){
+                appointmentRepository.insert(new Appointment(appointment.getUsernamePetSitter(), appointment.getUsernameOwner(), appointment.getTelephoneOwner(), appointment.getAddress(), appointment.getDescription()));
+                user.addAppointmentInList(appointment);
+                userRepository.update(user);
+            }
+        }
+    }
+
+
+    private static void checkAppointmentDoesNotAlreadyExist(String usernamePetSitter, String description) throws AppointmentAlreadyExistsException {
+        for (Appointment appointment : appointmentRepository.find()) {
+            if (Objects.equals(usernamePetSitter, appointment.getUsernamePetSitter()))
+                throw new AppointmentAlreadyExistsException(usernamePetSitter, description);
+        }
+    }
+
+    public static void acceptAppointment(Appointment appointment) throws NotExistingAppointmentException {
+        String usernamePetSitter = new String();
+        String usernameOwner  = new String();
+        for (Appointment app : appointmentRepository.find()) {
+            if (Objects.equals(app, appointment)) {//update the status of appointment in appointmentRepository for appointment
+                appointment.setStatusAsAccept();
+                appointmentRepository.update(appointment);
+                usernamePetSitter = app.getUsernamePetSitter();
+                usernameOwner = app.getUsernameOwner();
+
+            }
+        }
+        if (usernamePetSitter != null) {  //update the status of appointment in userRepository for PetSitter
+            updateInUserRepositoryAsAccept(usernamePetSitter, appointment);
+        }
+        if (usernameOwner != null) { //update the status of appointment in userRepository for Owner
+            updateInUserRepositoryAsAccept(usernameOwner, appointment);
+        }
+        if (Objects.equals(usernamePetSitter, null) || Objects.equals(usernameOwner, null))
+            throw new NotExistingAppointmentException();
+
+    }
+
+    public static void updateInUserRepositoryAsAccept (String username, Appointment appointment) {
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername())) {
+                ArrayList<Appointment> appointmentList = user.getAppointments();
+                for (Appointment ap : appointmentList) {
+                    if (Objects.equals(ap, appointment)) {
+                        ap.setStatusAsAccept();
+                        userRepository.update(user);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    public static void denyAppointment(Appointment appointment) throws NotExistingAppointmentException {
+        String usernamePetSitter = new String();
+        String usernameOwner  = new String();
+        for (Appointment app : appointmentRepository.find()) {
+            if (Objects.equals(app, appointment)) {//update the status of appointment in appointmentRepository for appointment
+                appointment.setStatusAsDeny();
+                appointmentRepository.update(appointment);
+                usernamePetSitter = app.getUsernamePetSitter();
+                usernameOwner = app.getUsernameOwner();
+
+            }
+        }
+        if (usernamePetSitter != null) {  //update the status of appointment in userRepository for PetSitter
+            updateInUserRepositoryAsDeny(usernamePetSitter, appointment);
+        }
+        if (usernameOwner != null) { //update the status of appointment in userRepository for Owner
+            updateInUserRepositoryAsDeny(usernameOwner, appointment);
+        }
+        if (Objects.equals(usernamePetSitter, null) || Objects.equals(usernameOwner, null))
+            throw new NotExistingAppointmentException();
+
+    }
+
+    public static void updateInUserRepositoryAsDeny (String username, Appointment appointment) {
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername())) {
+                ArrayList<Appointment> appointmentList = user.getAppointments();
+                for (Appointment ap : appointmentList) {
+                    if (Objects.equals(ap, appointment)) {
+                        ap.setStatusAsDeny();
+                        userRepository.update(user);
+                    }
+                }
+            }
+        }
+    }
+
 
 
 }

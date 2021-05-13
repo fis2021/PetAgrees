@@ -35,7 +35,7 @@ public class AppointmentController {
     private BufferedImage imageOfCertification;*/
 
     @FXML
-    public void handleRegisterAction() {
+    public void handleAppointmentAction() {
         try {
             AppointmentService.addAppointment(usernamePetSitterField.getText(), usernameOwnerField.getText(), telephoneOwnerField.getMaximumIntegerDigits(), descriptionOwnerField.getText(), "processing", addressOwnerField.getText());
             appointmentMessage.setText("Appointment created successfully!");

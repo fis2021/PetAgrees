@@ -56,4 +56,13 @@ public class Appointment {
     public String getAddress() {
         return this.address;
     }
+
+    public void setStatusAsAccept() {
+        this.status = "ACCEPT";
+    }
+
+    public void setStatusAsDeny() {
+        this.status = "DENY";
+    }
+
 }
