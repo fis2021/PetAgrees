@@ -8,6 +8,10 @@ import javafx.scene.text.Text;
 import org.fis.student.sre.exceptions.UsernameAlreadyExistsException;
 import org.fis.student.sre.services.UserService;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+
 public class RegistrationController {
 
     @FXML
@@ -21,13 +25,16 @@ public class RegistrationController {
 
     @FXML
     public void initialize() {
-        role.getItems().addAll("Client", "Admin");
+        role.getItems().addAll("Pet Owner", "Pet Sitter");
     }
+
+    @FXML
+    private BufferedImage imageOfCertification;
 
     @FXML
     public void handleRegisterAction() {
         try {
-            UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
+            UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue(), imageOfCertification);
             registrationMessage.setText("Account created successfully!");
         } catch (UsernameAlreadyExistsException e) {
             registrationMessage.setText(e.getMessage());
