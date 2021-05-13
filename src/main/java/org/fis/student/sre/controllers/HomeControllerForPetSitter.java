@@ -14,39 +14,69 @@ import org.fis.student.sre.model.Appointment;
 import org.fis.student.sre.model.User;
 import org.fis.student.sre.services.UserService;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
 
-public class HomeController {
-    private User user;
+public class HomeControllerForPetSitter {
+
+    private User currentUser;
+
     @FXML
     private BorderPane borderPane;
 
-    @FXML
-    private ListView<String> appointmentList;
+
+    public void setUser(User u){
+        currentUser = u;
+    }
+    public User getUser(){ return currentUser;}
 
     @FXML
-    private ChoiceBox<String> sortChoice;
-
-    public void setAppointments(){
-        ArrayList <Appointment> appointments = UserService.getAppointmentsList();
-
-        if(appointments.isEmpty()){
-            Label emptyMessage = new Label();
-            emptyMessage.setText("Looks like there are no threads :c");
-            borderPane.setCenter(emptyMessage);
-            sortChoice.setDisable(true);
-            return;
+    private void loadAppointmentsListPage(){
+        try {
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+            Parent loginRoot = FXMLLoader.load(getClass().getResource("/fxml/appointmentsList.fxml"));
+            Scene scene = new Scene(loginRoot, 640, 800);
+            stage.setTitle("This is tour appointments list :)");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void setUser(User u){
-        user = u;
+    @FXML
+    private void loadRequestListPage(){
+        try {
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+            Parent loginRoot = FXMLLoader.load(getClass().getResource("/fxml/requestList.fxml"));
+            Scene scene = new Scene(loginRoot, 640, 800);
+            stage.setTitle("This is your requests list :)");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private User getUser(){
-        return user;
+
+    @FXML
+    private void loadLoginPage(){
+        try {
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+            Parent loginRoot = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+            Scene scene = new Scene(loginRoot, 640, 800);
+            stage.setTitle("PetAgrees - Login");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
+
+
+
+
+
 }

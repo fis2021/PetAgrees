@@ -1,18 +1,27 @@
 package org.fis.student.sre.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.fis.student.sre.exceptions.NotExistingAppointmentException;
 import org.fis.student.sre.model.Appointment;
 import org.fis.student.sre.model.User;
 import org.fis.student.sre.services.UserService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class RequestController {
 
     private static User currentUser;
+
+    @FXML
+    private BorderPane borderPane;
 
     @FXML
     private Text requestMessage;
@@ -57,5 +66,6 @@ public class RequestController {
     public static User getCurrentUser() {
         return currentUser;
     }
+
 }
 

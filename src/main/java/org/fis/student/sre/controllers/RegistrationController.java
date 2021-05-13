@@ -1,5 +1,6 @@
 package org.fis.student.sre.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
@@ -32,7 +33,7 @@ public class RegistrationController {
     private BufferedImage imageOfCertification;
 
     @FXML
-    public void handleRegisterAction() {
+    public void handleRegisterAction(ActionEvent event) {
         try {
             UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue(), imageOfCertification);
             registrationMessage.setText("Account created successfully!");
