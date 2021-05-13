@@ -1,6 +1,6 @@
 package org.fis.student.sre.exceptions;
 
-public class AppointmentAlreadyExistsExceptions {
+public class AppointmentAlreadyExistsException extends Throwable {
     private String usernamePetSitter;
     private String description;
 
