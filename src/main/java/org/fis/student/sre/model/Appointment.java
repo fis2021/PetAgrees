@@ -27,13 +27,21 @@ public class Appointment {
     }
 
     public String toString() {
-        String s = "Owner username: " + this.usernameOwner + "\n";
+        String s = "Pet sitter username: " + this.usernamePetSitter + "\n";
+        s = s + "Owner username: " + this.usernameOwner + "\n";
         s = s + "Owner telephone: " + this.telephoneOwner + "\n";
-        s = s + "Pet sitter username: " + this.usernamePetSitter + "\n";
         s = s + "Address: " + this.address;
         s = s + "Description: " + this.description;
         s = s + "Status: " + this.status;
 
+
+        return s;
+    }
+
+    public String toStringSmallDetails() {
+        String s = "Owner username: " + this.usernameOwner + "\n";
+        s = s + "Address: " + this.address;
+        s = s + "Status: " + this.status;
 
         return s;
     }

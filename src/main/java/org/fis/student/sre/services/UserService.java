@@ -2,6 +2,7 @@ package org.fis.student.sre.services;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.fis.student.sre.exceptions.*;
 import org.fis.student.sre.model.Appointment;
 import org.fis.student.sre.model.User;
@@ -38,6 +39,15 @@ public class UserService {
         userRepository.insert(new User(username, encodePassword(username, password), role, imageOfCertification));
     }
 
+    public static User getUser(String username){
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername()))
+                return user;
+
+        }
+        return null;
+    }
+
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
         for (User user : userRepository.find()) {
             if (Objects.equals(username, user.getUsername()))
@@ -61,7 +71,7 @@ public class UserService {
         }
     }
 
-    private static String encodePassword(String salt, String password) {
+    public static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
@@ -191,6 +201,26 @@ public class UserService {
                 }
             }
         }
+    }
+
+    public static ArrayList <Appointment> getRequestList(String username) {
+        int index = 0;
+        ArrayList <Appointment> requestList = new ArrayList<Appointment> (50);
+        for(Appointment request : appointmentRepository.find()){
+            if(Objects.equals(username, request.getUsernamePetSitter()) && Objects.equals(request.getStatus(), "processing")){
+                if (index == 49) {
+                    ArrayList <Appointment> aux = new ArrayList<Appointment> (index + 50);
+                    requestList = aux;
+                }
+                requestList.add(request);
+                index++;
+            }
+        }
+        return requestList;
+    }
+
+    public static String getHashedUserPassword(String username) throws UserNotFoundException{
+        return getUser(username).getPassword();
     }
 
 

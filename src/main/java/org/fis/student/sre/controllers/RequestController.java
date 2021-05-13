@@ -3,20 +3,14 @@ package org.fis.student.sre.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.text.Text;
-import org.fis.student.sre.exceptions.AppointmentAlreadyExistsException;
 import org.fis.student.sre.exceptions.NotExistingAppointmentException;
-import org.fis.student.sre.exceptions.UsernameAlreadyExistsException;
 import org.fis.student.sre.model.Appointment;
 import org.fis.student.sre.model.User;
-import org.fis.student.sre.services.AppointmentService;
-import org.fis.student.sre.model.PetSitter;
 import org.fis.student.sre.services.UserService;
 
 import java.util.ArrayList;
 
 public class RequestController {
-
-    //protected Appointment appointment;
 
     private static User currentUser;
 
@@ -36,21 +30,21 @@ public class RequestController {
 
     @FXML
     public void handleRequestAction() {
-        ArrayList <Appointment> requestListNames = UserService.getAppointmentsList(this.getCurrentUser().getUsername());
-        if (requestListNames == null) {
+        ArrayList <Appointment> requestList = UserService.getRequestList(this.getCurrentUser().getUsername());
+        if (requestList == null) {
             requestMessage.setText("Sorry. You don't have any request:(");
         } else {
-            detailsAboutRequest.setText(currentUser.getAppointments().toString());
             try {
-                for (Appointment appointment : requestListNames) {
+                for (Appointment request : requestList) {
+                    detailsAboutRequest.setText(request.toString());
                     if ((String) status.getValue() == "ACCEPT") {
                         Object app = status.getUserData();
-                        UserService.acceptAppointment(appointment);
+                        UserService.acceptAppointment(request);
                         requestMessage.setText("Request accepted successfully!");
                     }
                     if ((String) status.getValue() == "DENY") {
                         Object app = status.getUserData();
-                        UserService.denyAppointment(appointment);
+                        UserService.denyAppointment(request);
                         requestMessage.setText("Request denied successfully!");
                     }
                 }

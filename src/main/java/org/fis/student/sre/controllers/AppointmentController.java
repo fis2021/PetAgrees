@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.fis.student.sre.exceptions.AppointmentAlreadyExistsException;
-import org.fis.student.sre.exceptions.UsernameAlreadyExistsException;
-import org.fis.student.sre.services.AppointmentService;
+import org.fis.student.sre.model.Appointment;
+import org.fis.student.sre.services.UserService;
 
 import java.text.NumberFormat;
 
@@ -23,23 +23,14 @@ public class AppointmentController {
     private TextField descriptionOwnerField;
     @FXML
     private TextField addressOwnerField;
-   /* @FXML
-    private ChoiceBox status;
-
-    @FXML
-    public void initialize() {
-        status.getItems().addAll("ACCEPT", "DENY");
-    }
-
-    @FXML
-    private BufferedImage imageOfCertification;*/
 
     @FXML
     public void handleAppointmentAction() {
         try {
-            AppointmentService.addAppointment(usernamePetSitterField.getText(), usernameOwnerField.getText(), telephoneOwnerField.getMaximumIntegerDigits(), descriptionOwnerField.getText(), "processing", addressOwnerField.getText());
+            Appointment appointment = new Appointment(usernamePetSitterField.getText(), usernameOwnerField.getText(), telephoneOwnerField.getMaximumIntegerDigits(), descriptionOwnerField.getText(), "processing", addressOwnerField.getText());
+            UserService.addAppointmentInAppointmentsList(usernameOwnerField.getText(), appointment);// add appointment in appointment list for Owner
             appointmentMessage.setText("Appointment created successfully!");
-        } catch (AppointmentAlreadyExistsException | UsernameAlreadyExistsException e) {
+        } catch (AppointmentAlreadyExistsException e) {
             appointmentMessage.setText(e.getMessage());
         }
     }
