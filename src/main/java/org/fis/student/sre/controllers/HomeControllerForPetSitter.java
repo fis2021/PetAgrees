@@ -39,7 +39,7 @@ public class HomeControllerForPetSitter {
             Stage stage = (Stage) borderPane.getScene().getWindow();
             Parent loginRoot = FXMLLoader.load(getClass().getResource("/fxml/appointmentsList.fxml"));
             Scene scene = new Scene(loginRoot, 640, 800);
-            stage.setTitle("This is tour appointments list :)");
+            stage.setTitle("This is your appointments list :)");
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();

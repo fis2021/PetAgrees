@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="RequestList"
-            prefHeight="400.0" prefWidth="600.0">
+<GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fis.student.sre.controllers.RequestController">
+    <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+    </padding>
+    <Text id="title-text" text="Your request :)" wrappingWidth="278.16210174560547" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-</AnchorPane>
+    <Label text="Request message: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+    <Text fx:id="requestMessage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+    <Label text="Details about request:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <Text fx:id="detailsAboutRequest" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+    <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+
+    <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+    </ChoiceBox>
+
+    <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+        <Button onAction="#handleRequestAction" text="Confirm Status" />
+    </HBox>
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="7">
+        <Button onAction="#loadBackAction" text="Back" />
+    </HBox>
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
+        <Button onAction="#loadLoginAction" text="Log out" />
+    </HBox>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
