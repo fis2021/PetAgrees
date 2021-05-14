@@ -14,7 +14,6 @@ import org.fis.student.sre.exceptions.UsernameAlreadyExistsException;
 import org.fis.student.sre.services.UserService;
 import javafx.scene.layout.BorderPane;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 

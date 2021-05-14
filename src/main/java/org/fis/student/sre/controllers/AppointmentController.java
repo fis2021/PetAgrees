@@ -8,9 +8,6 @@ import org.fis.student.sre.model.Appointment;
 import org.fis.student.sre.model.IntegerTextField;
 import org.fis.student.sre.services.UserService;
 
-import java.text.NumberFormat;
-
-
 public class AppointmentController {
     @FXML
     private Text appointmentMessage;

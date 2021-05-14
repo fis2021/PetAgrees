@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.dizitart.no2.FindOptions;
 import org.dizitart.no2.SortOrder;
@@ -23,11 +22,6 @@ import org.fis.student.sre.model.User;
 import org.fis.student.sre.services.UserService;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
 
 public class SeeAllAppointmentsController {

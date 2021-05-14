@@ -1,16 +1,12 @@
 package org.fis.student.sre.controllers;
 
-import org.fis.student.sre.exceptions.NotExistingAccountException;
 import org.fis.student.sre.exceptions.UserNotFoundException;
-import org.fis.student.sre.exceptions.UsernameAlreadyExistsException;
-import org.fis.student.sre.exceptions.WrongPasswordException;
 import org.fis.student.sre.model.User;
 import org.fis.student.sre.services.UserService;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;

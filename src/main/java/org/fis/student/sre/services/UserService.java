@@ -2,11 +2,9 @@ package org.fis.student.sre.services;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
-import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.fis.student.sre.exceptions.*;
 import org.fis.student.sre.model.Appointment;
 import org.fis.student.sre.model.User;
-import static  org.fis.student.sre.controllers.LoginController.getCurrentUser;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -14,9 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import static org.fis.student.sre.services.FileSystemService.getPathToFile;
 
