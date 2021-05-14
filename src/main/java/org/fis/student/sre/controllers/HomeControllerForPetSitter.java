@@ -37,7 +37,7 @@ public class HomeControllerForPetSitter {
     private void loadAppointmentsListPage(){
         try {
             Stage stage = (Stage) borderPane.getScene().getWindow();
-            Parent loginRoot = FXMLLoader.load(getClass().getResource("/fxml/appointmentsList.fxml"));
+            Parent loginRoot = FXMLLoader.load(getClass().getResource("/fxml/seeAllAppointmentsList.fxml"));
             Scene scene = new Scene(loginRoot, 640, 800);
             stage.setTitle("This is your appointments list :)");
             stage.setScene(scene);

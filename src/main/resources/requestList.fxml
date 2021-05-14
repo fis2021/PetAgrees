@@ -9,35 +9,34 @@
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
     </padding>
-    <Text id="title-text" text="Your request :)" wrappingWidth="278.16210174560547" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+    <Text id="title-text" text="Your request :)" wrappingWidth="278.16210174560547" GridPane.columnSpan="2" GridPane.rowIndex="1" />
 
-    <Label text="Request message: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Label text="Request message: " GridPane.rowIndex="2" />
 
-    <Text fx:id="requestMessage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Text fx:id="requestMessage" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <Label text="Details about request:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-    <Text fx:id="detailsAboutRequest" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label text="Details about request:" GridPane.rowIndex="3" />
+    <Text fx:id="detailsAboutRequest" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-    <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <Label text="Status:" GridPane.rowIndex="4" />
 
-    <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+    <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
     </ChoiceBox>
 
-    <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+    <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
         <Button onAction="#handleRequestAction" text="Confirm Status" />
     </HBox>
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="7">
-        <Button onAction="#loadBackAction" text="Back" />
-    </HBox>
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
-        <Button onAction="#loadLoginAction" text="Log out" />
-    </HBox>
+    <HBox alignment="bottom_right" spacing="10" GridPane.rowIndex="8" />
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+     <Button onAction="#loadBackAction" text="Back" />
+     <Button onAction="#loadLoginAction" text="Log out" GridPane.rowIndex="6" />
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
+      <RowConstraints />
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />

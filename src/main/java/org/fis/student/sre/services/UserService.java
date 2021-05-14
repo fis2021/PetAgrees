@@ -226,5 +226,7 @@ public class UserService {
     }
 
 
-
+    public static ObjectRepository<Appointment> getAppointmentRepository() {
+        return appointmentRepository;
+    }
 }

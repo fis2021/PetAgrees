@@ -31,4 +31,7 @@
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <Button onAction="#handleRegisterAction" text="Register"/>
     </HBox>
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="5">
+        <Button onAction="#loadLoginPage" text="Log in"/>
+    </HBox>
 </GridPane>

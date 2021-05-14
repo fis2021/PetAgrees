@@ -95,4 +95,6 @@ public class Appointment {
         this.status = "DENY";
     }
 
+    public String getDataPrimaZiAsString() { return  this.dataPrimaZi.toString();}
+
 }
