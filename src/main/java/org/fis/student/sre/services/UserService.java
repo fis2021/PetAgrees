@@ -101,7 +101,9 @@ public class UserService {
                     s = aux;
                 }
                 for (Appointment ap: user.getAppointments()) {
-                    s.add(ap);
+                    if (!Objects.equals(ap.getStatus(), "processing")) {
+                        s.add(ap);
+                    }
                 }
             }
         }
@@ -112,7 +114,7 @@ public class UserService {
         checkAppointmentDoesNotAlreadyExist(appointment.getUsernamePetSitter(), appointment.getDescription());
         for(User user : userRepository.find()){
             if(Objects.equals(username, user.getUsername())){
-                appointmentRepository.insert(new Appointment(appointment.getUsernamePetSitter(), appointment.getUsernameOwner(), appointment.getTelephoneOwner(), appointment.getAddress(), appointment.getDescription()));
+                appointmentRepository.insert(new Appointment(appointment.getUsernamePetSitter(), appointment.getUsernameOwner(), appointment.getTelephoneOwner(), appointment.getAddress(), appointment.getDescription(), appointment.getDataPrimaZi(), appointment.getNumarDeZile()));
                 user.addAppointmentInList(appointment);
                 userRepository.update(user);
             }
