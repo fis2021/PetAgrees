@@ -1,15 +1,13 @@
 package org.fis.student.sre.controllers;
 
-import org.fis.student.sre.exceptions.NotExistingAccountException;
+import javafx.scene.control.Button;
 import org.fis.student.sre.exceptions.UserNotFoundException;
-import org.fis.student.sre.exceptions.WrongPasswordException;
 import org.fis.student.sre.model.User;
 import org.fis.student.sre.services.UserService;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
@@ -28,6 +26,12 @@ public class LoginController {
     private TextField usernameField;
     @FXML
     private Text loginMessage;
+
+    @FXML
+    private Button buttonLogIn;
+
+    @FXML
+    private Button buttonRegister;
 
     private static User currentUser;
 
@@ -80,7 +84,7 @@ public class LoginController {
     @FXML
     public void loadRegisterPage(){
         try {
-            Stage stage = (Stage) loginMessage.getScene().getWindow();
+            Stage stage = (Stage) buttonRegister.getScene().getWindow();
             Parent registerRoot = FXMLLoader.load(getClass().getResource("/fxml/register.fxml"));
             Scene scene = new Scene(registerRoot, 640, 800);
             stage.setTitle("PetAgrees - Register");
@@ -94,13 +98,12 @@ public class LoginController {
     private void loadHomePageForPetSitter() {
         try{
             User u = UserService.getUser(usernameField.getText());
-            Stage stage = (Stage) loginMessage.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/home.fxml"));
+            Stage stage = (Stage) buttonLogIn.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeForPetSitter.fxml"));
             Parent homeRoot = loader.load();
             HomeControllerForPetSitter controller = loader.getController();
             controller.setUser(u);
             stage.setUserData(u);
-            controller.setAppointments();
             Scene scene = new Scene(homeRoot, 640, 800);
             stage.setTitle("PetAgrees for PetSitter - Home");
             stage.setScene(scene);
@@ -108,6 +111,25 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void loadHomePageForOwner() {
+        try{
+            User u = UserService.getUser(usernameField.getText());
+            Stage stage = (Stage) buttonLogIn.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeForOwner.fxml"));
+            Parent homeRoot = loader.load();
+            HomeControllerForPetSitter controller = loader.getController();
+            controller.setUser(u);
+            stage.setUserData(u);
+            Scene scene = new Scene(homeRoot, 640, 800);
+            stage.setTitle("PetAgrees for Owner - Home");
+            stage.setScene(scene);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 
 
 

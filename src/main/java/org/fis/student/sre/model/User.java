@@ -1,8 +1,9 @@
 package org.fis.student.sre.model;
 
 import org.dizitart.no2.objects.Id;
-import java.awt.*;
+
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class User {
     @Id
@@ -10,12 +11,22 @@ public class User {
     private String password;
     private String role;
     protected BufferedImage imageOfCertification;
+    private ArrayList<Appointment> appointments;
+    private int listIndex;
+    private int max = 50;
 
     public User(String username, String password, String role, BufferedImage imageOfCertification) {
         this.username = username;
         this.password = password;
         this.role = role;
         this.imageOfCertification = imageOfCertification;
+        this.appointments = new ArrayList <Appointment>(max);
+        this.listIndex = 0;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public User() {
@@ -51,9 +62,9 @@ public class User {
         this.role = role;
     }
 
-    public Graphics getImageOfCertification() {
+    public BufferedImage getImageOfCertification() {
 
-        return this.imageOfCertification.getGraphics();
+        return this.imageOfCertification;
     }
 
     public void setImageOfCertification(BufferedImage role) {
@@ -87,4 +98,31 @@ public class User {
         result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
     }
+
+    private void listIsFull() {
+        max += 50;
+        ArrayList <Appointment> aux;
+        aux = new ArrayList<Appointment>(max);
+        for (Appointment ap : appointments) {
+            aux.add(ap);
+        }
+        appointments = aux;
+    }
+
+    public void addAppointmentInList(Appointment ap) {
+        this.appointments.add(ap);
+        this.listIndex++;
+        if (this.listIndex == max) {
+            listIsFull();
+        }
+    }
+
+    public int getMax() {
+        return this.max;
+    }
+
+    public ArrayList <Appointment> getAppointments() {
+        return this.appointments;
+    }
+
 }

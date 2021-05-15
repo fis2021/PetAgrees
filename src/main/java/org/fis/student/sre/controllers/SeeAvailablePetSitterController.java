@@ -1,6 +1,7 @@
 package org.fis.student.sre.controllers;
 
 
+import com.sun.javafx.scene.control.IntegerField;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +21,7 @@ import org.dizitart.no2.objects.Cursor;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.fis.student.sre.exceptions.AppointmentAlreadyExistsException;
 import org.fis.student.sre.model.Appointment;
-import org.fis.student.sre.model.IntegerTextField;
+import org.fis.student.sre.model.Owner;
 import org.fis.student.sre.model.User;
 import org.fis.student.sre.services.UserService;
 
@@ -31,8 +32,9 @@ public class SeeAvailablePetSitterController {
 
     private static ObservableList<User> petSitters;
     private static ObjectRepository<User> REPOSITORY = UserService.getUserRepository();
-    private static User currentUser;
+    private static Owner currentOwner;
     private static String id, username;
+    private static Appointment request;
 
     @FXML
     private Text appointmentMessage;
@@ -43,25 +45,17 @@ public class SeeAvailablePetSitterController {
     public TableColumn<User, String> petSitterNameColumn;
 
     @FXML
-    private TextField usernameOwnerField;
+    private IntegerField anPrimaZiField;
     @FXML
-    private IntegerTextField telephoneOwnerField;
+    private IntegerField lunaPrimaZiField;
     @FXML
-    private TextField descriptionOwnerField;
+    private IntegerField ziPrimaZiField;
     @FXML
-    private TextField addressOwnerField;
+    private IntegerField oraPrimaZiField;
     @FXML
-    private IntegerTextField anPrimaZiField;
+    private IntegerField minutPrimaZiField;
     @FXML
-    private IntegerTextField lunaPrimaZiField;
-    @FXML
-    private IntegerTextField ziPrimaZiField;
-    @FXML
-    private IntegerTextField oraPrimaZiField;
-    @FXML
-    private IntegerTextField minutPrimaZiField;
-    @FXML
-    private IntegerTextField numarDeZileField;
+    private IntegerField numarDeZileField;
 
     @FXML
     private Button buttonAdd;
@@ -86,13 +80,13 @@ public class SeeAvailablePetSitterController {
         petSitters = newList;
     }
 
-    public static User getCurrentUser() {
-        return currentUser;
+    public static Owner getCurrentOwner() {
+        return currentOwner;
     }
 
-    public void setUser(User user)
+    public void setOwner(Owner owner)
     {
-        this.currentUser=user;
+        this.currentOwner = owner;
     }
 
     @FXML
@@ -155,8 +149,9 @@ public class SeeAvailablePetSitterController {
 
     public void showRequest(User PetSitter) {
         try {
-            Appointment appointment = new Appointment(PetSitter.getUsername(), usernameOwnerField.getText(), telephoneOwnerField.getInt(), descriptionOwnerField.getText(), "processing", addressOwnerField.getText(), anPrimaZiField.getInt(), lunaPrimaZiField.getInt(), ziPrimaZiField.getInt(), oraPrimaZiField.getInt(), minutPrimaZiField.getInt(), numarDeZileField.getInt());
-            UserService.addAppointmentInAppointmentsList(usernameOwnerField.getText(), appointment);// add appointment in appointment list for Owner
+            Appointment appointment = new Appointment(PetSitter.getUsername(), getCurrentOwner().getUsername(), getCurrentOwner().getTelephoneOwner(), getCurrentOwner().getDescriptionOwner(), "processing", getCurrentOwner().getAddressOwner(), anPrimaZiField.getValue(), lunaPrimaZiField.getValue(), ziPrimaZiField.getValue(), oraPrimaZiField.getValue(), minutPrimaZiField.getValue(), numarDeZileField.getValue());
+            setRequest(appointment);
+            UserService.addAppointmentInAppointmentsList(getCurrentOwner().getUsername(), appointment);// add appointment in appointment list for Owner
             appointmentMessage.setText("Request created successfully!");
         } catch (AppointmentAlreadyExistsException e) {
             appointmentMessage.setText(e.getMessage());
@@ -188,5 +183,19 @@ public class SeeAvailablePetSitterController {
             e.printStackTrace();
         }
     }
+
+    public void handleAddRequest() {
+        try {
+            Appointment appointment = getRequest();
+            UserService.addAppointmentInAppointmentsList(getCurrentOwner().getUsername(), appointment);// add appointment in appointment list for Owner
+            appointmentMessage.setText("Request created successfully!");
+        } catch (AppointmentAlreadyExistsException e) {
+            appointmentMessage.setText(e.getMessage());
+        }
+
+    }
+
+    private void setRequest(Appointment request) { this.request = request; }
+    private Appointment getRequest() { return this.request; }
 
 }
