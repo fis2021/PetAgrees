@@ -14,9 +14,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserServiceTest {
 
+    @BeforeAll
+    static void beforeAll() {
+        System.out.println("Before All");
+    }
+
+    @AfterAll
+    static void afterAll() {
+        System.out.println("After All");
+    }
+
     @BeforeEach
     void setUp() throws Exception {
         FileSystemService.APPLICATION_FOLDER = ".test-PetAgrees";
+        FileSystemService.initDirectory();
         FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
         UserService.initDatabase();
     }

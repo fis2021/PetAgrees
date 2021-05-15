@@ -6,8 +6,9 @@
 <?import javafx.scene.text.*?>
 
 <?import javafx.scene.image.ImageView?>
-<GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600" vgap="10"
-          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600"
+          vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal"
+          xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="org.fis.student.sre.controllers.RegistrationController">
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
@@ -16,26 +17,26 @@
 
     <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField fx:id="usernameField" id="username" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
     <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <PasswordField fx:id="passwordField" id="password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-    <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+    <ChoiceBox fx:id="role" id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
     </ChoiceBox>
 
     <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="9" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
       <children>
-          <Button fx:id="buttonRegister" id="Register" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleRegisterAction" text="Register">
+          <Button fx:id="buttonRegister" id="buttonRegister" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleRegisterAction" text="Register">
           </Button>
       </children>
     </HBox>
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="5">
-        <Button fx:id="buttonLogIn" id="Log out" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadLoginPage" text="Log in">
+        <Button fx:id="buttonLogIn" id="buttonLogIn" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadLoginPage" text="Log in">
         </Button>
     </HBox>
    <columnConstraints>
