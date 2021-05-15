@@ -6,11 +6,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.fis.student.sre.exceptions.UsernameAlreadyExistsException;
+import org.fis.student.sre.model.IntegerTextField;
 import org.fis.student.sre.model.User;
 import org.fis.student.sre.services.UserService;
 
