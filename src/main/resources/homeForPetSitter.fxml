@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.fis.student.sre.controllers.HomeControllerForPetSitter">
+    <top>
+        <HBox alignment="TOP_RIGHT" spacing="5.0" BorderPane.alignment="TOP_RIGHT">
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            </BorderPane.margin>
+            <children>
+                <HBox prefHeight="25.0" prefWidth="136.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#loadAppointmentsListPage" text="Your appointments list" />
+                    </children>
+                </HBox>
+                <HBox prefHeight="25.0" prefWidth="247.0" />
+                <HBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="170.0" spacing="5.0">
+                </HBox>
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <HBox alignment="CENTER_RIGHT" spacing="5.0" BorderPane.alignment="CENTER_RIGHT">
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            </BorderPane.margin>
+            <children>
+                <HBox prefHeight="25.0" prefWidth="136.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#loadRequestListPage" text="Your requests list" />
+                    </children>
+                </HBox>
+                <HBox prefHeight="25.0" prefWidth="247.0" />
+                <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="170.0" spacing="5.0">
+                </HBox>
+            </children>
+        </HBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="5.0" BorderPane.alignment="CENTER_RIGHT">
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="50.0" />
+            </BorderPane.margin>
+            <children>
+                <HBox prefHeight="25.0" prefWidth="136.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#loadLoginPage" text="Log out" />
+                    </children>
+                </HBox>
+                <HBox prefHeight="25.0" prefWidth="247.0" />
+                <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="170.0" spacing="5.0">
+                </HBox>
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

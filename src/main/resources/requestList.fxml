@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600" vgap="10"
+          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="org.fis.student.sre.controllers.RequestController">
+    <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+    </padding>
+    <Text id="title-text" text="Your request :)" wrappingWidth="278.16210174560547" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+
+    <Label text="Request message: " GridPane.rowIndex="2" />
+
+    <Text fx:id="requestMessage" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+    <Label text="Details about request:" GridPane.rowIndex="3" />
+    <Text fx:id="detailsAboutRequest" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+    <Label text="Status:" GridPane.rowIndex="4" />
+
+    <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+    </ChoiceBox>
+
+    <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+        <Button onAction="#handleRequestAction" text="Confirm Status" />
+    </HBox>
+    <HBox alignment="bottom_right" spacing="10" GridPane.rowIndex="8" />
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+     <Button onAction="#loadBackAction" text="Back" />
+     <Button onAction="#loadLoginAction" text="Log out" GridPane.rowIndex="6" />
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
