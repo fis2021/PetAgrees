@@ -45,6 +45,18 @@ public class Appointment {
         this.numarDeZile = numarDeZile;
     }
 
+    public Appointment (String usernamePetSitter,String usernameOwner, int telephoneOwner, String address, String description, GregorianCalendar dataPrimaZi, int numarDeZile) {
+        this.description = description;
+        this.telephoneOwner = telephoneOwner;
+        this.usernameOwner = usernameOwner;
+        this.usernamePetSitter = usernamePetSitter;
+        this.address = address;
+        this.status = "processing";
+        this.dataPrimaZi = dataPrimaZi;
+        this.numarDeZile = numarDeZile;
+    }
+
+
     public String toString() {
         String s = "Pet sitter username: " + this.usernamePetSitter + "\n";
         s = s + "Owner username: " + this.usernameOwner + "\n";
