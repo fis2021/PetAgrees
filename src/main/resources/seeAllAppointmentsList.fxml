@@ -45,18 +45,18 @@
                                 <Label text="address" GridPane.rowIndex="4" />
                                 <Label text="date of first day" GridPane.rowIndex="5" />
                                 <Label text="number of days" GridPane.rowIndex="6" />
-                                <Label fx:id="usernameOwnerLabel" alignment="CENTER" contentDisplay="CENTER" text="Label" textAlignment="CENTER" GridPane.columnIndex="1" />
-                                <Label fx:id="telephoneOwnerLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <Label fx:id="descriptionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                <Label fx:id="statusLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                <Label fx:id="addressLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                <Label fx:id="dataPrimaZiLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                <Label fx:id="numarDeZileLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                <Label fx:id="usernameOwnerLabel" id="usernameOwner" alignment="CENTER" contentDisplay="CENTER" text="Label" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                <Label fx:id="telephoneOwnerLabel" id="telephoneOwner" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="descriptionLabel" id="description" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label fx:id="statusLabel" id="status" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label fx:id="addressLabel" id="address" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label fx:id="dataPrimaZiLabel" id="dataPrimaZi" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label fx:id="numarDeZileLabel" id="numarDeZile" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                             </children>
                         </GridPane>
-                        <Button fx:id="buttonBack" id="Back" layoutX="151.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadBackAction" text="Back" textFill="#f5f5f7">
+                        <Button fx:id="buttonBack" id="buttonBack" layoutX="151.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadBackAction" text="Back" textFill="#f5f5f7">
                         </Button>
-                        <Button fx:id="buttonLogOut" id="Log out" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadLoginAction" text="Log out" textFill="#f5f5f7">
+                        <Button fx:id="buttonLogOut" id="buttonLogOut" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadLoginAction" text="Log out" textFill="#f5f5f7">
                         </Button>
                     </children>
                 </AnchorPane>

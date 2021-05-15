@@ -222,6 +222,9 @@ public class UserService {
         return getUser(username).getPassword();
     }
 
+    public static List<Appointment> getAllAppointments() {
+        return appointmentRepository.find().toList();
+    }
 
     public static ObjectRepository<Appointment> getAppointmentRepository() {
         return appointmentRepository;
