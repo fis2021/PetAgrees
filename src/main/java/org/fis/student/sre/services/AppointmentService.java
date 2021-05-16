@@ -1,4 +1,4 @@
-package org.fis.student.sre.services;
+/*package org.fis.student.sre.services;
 
 import org.dizitart.no2.Cursor;
 import org.dizitart.no2.FindOptions;
@@ -81,7 +81,7 @@ public class AppointmentService {
         // This is the way a string should be encoded when checking the credentials
         return new String(hashedPassword, StandardCharsets.UTF_8)
                 .replace("\"", ""); //to be able to save in JSON format
-    }*/
+    }
 
     private static MessageDigest getMessageDigest() {
         MessageDigest md;
@@ -94,3 +94,4 @@ public class AppointmentService {
     }
 
 }
+*/
