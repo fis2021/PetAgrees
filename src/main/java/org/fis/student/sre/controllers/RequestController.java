@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -20,7 +21,7 @@ import java.util.Iterator;
 
 public class RequestController {
 
-    private static User currentUser;
+    //private static User currentUser;
 
     @FXML
     private Button buttonConfirmStatusRequest;
@@ -39,6 +40,8 @@ public class RequestController {
     @FXML
     private Text detailsAboutRequest;
     @FXML
+    private TextField usernameField;
+    @FXML
     private ChoiceBox status;
 
     @FXML
@@ -50,7 +53,8 @@ public class RequestController {
 
     @FXML
     public void handleRequestAction() {
-        ArrayList <Appointment> requestList = UserService.getRequestList(this.getCurrentUser().getUsername());
+        User currentUser = UserService.getUser(usernameField.getText());
+        ArrayList <Appointment> requestList = UserService.getRequestList(currentUser.getUsername());
         if (requestList == null) {
             requestMessage.setText("Sorry. You don't have any request:(");
         } else {
@@ -114,9 +118,9 @@ public class RequestController {
 
 
 
-    public static User getCurrentUser() {
+    /*public static User getCurrentUser() {
         return currentUser;
-    }
+    }*/
 
 }
 
