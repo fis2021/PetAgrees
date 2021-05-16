@@ -21,6 +21,7 @@ import org.dizitart.no2.objects.Cursor;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.fis.student.sre.exceptions.AppointmentAlreadyExistsException;
 import org.fis.student.sre.model.Appointment;
+import org.fis.student.sre.model.Owner;
 import org.fis.student.sre.model.User;
 import org.fis.student.sre.services.UserService;
 
@@ -31,8 +32,8 @@ public class SeeAvailablePetSitterController {
 
     private static ObservableList<User> petSitters;
     private static ObjectRepository<User> REPOSITORY = UserService.getUserRepository();
-    private static Owner currentOwner;
-    private static String id, username;
+    /*private static Owner currentOwner;
+    private static String id, username;*/
     private static Appointment request;
 
     @FXML
@@ -42,6 +43,7 @@ public class SeeAvailablePetSitterController {
     public TableView<User> petSitterTable;
     @FXML
     public TableColumn<User, String> petSitterNameColumn;
+
 
     @FXML
     private IntegerField anPrimaZiField;
@@ -66,6 +68,9 @@ public class SeeAvailablePetSitterController {
     @FXML
     private TextField searchTextField;
 
+    @FXML
+    private TextField usernameField;
+
     public static void getAllPetSitters(){
         ObservableList<User> newList = FXCollections.observableArrayList();
         Cursor<User> cursor = REPOSITORY.find(FindOptions.sort("usernamePetSitter", SortOrder.Ascending));
@@ -81,7 +86,7 @@ public class SeeAvailablePetSitterController {
         return petSitters;
     }
 
-    public static Owner getCurrentOwner() {
+   /* public static Owner getCurrentOwner() {
         return currentOwner;
     }
 
@@ -89,7 +94,7 @@ public class SeeAvailablePetSitterController {
     {
         this.currentOwner = owner;
     }
-
+*/
     @FXML
     public void initialize() {
         getAllPetSitters();
@@ -150,9 +155,10 @@ public class SeeAvailablePetSitterController {
 
     public void showRequest(User PetSitter) {
         try {
-            Appointment appointment = new Appointment(PetSitter.getUsername(), getCurrentOwner().getUsername(), getCurrentOwner().getTelephoneOwner(), getCurrentOwner().getDescriptionOwner(), "processing", getCurrentOwner().getAddressOwner(), anPrimaZiField.getValue(), lunaPrimaZiField.getValue(), ziPrimaZiField.getValue(), oraPrimaZiField.getValue(), minutPrimaZiField.getValue(), numarDeZileField.getValue());
+            Owner currentOwner = UserService.getOwner(usernameField.getText());
+            Appointment appointment = new Appointment(PetSitter.getUsername(), currentOwner.getUsername(), currentOwner.getTelephoneOwner(), currentOwner.getDescriptionOwner(), "processing", currentOwner.getAddressOwner(), anPrimaZiField.getValue(), lunaPrimaZiField.getValue(), ziPrimaZiField.getValue(), oraPrimaZiField.getValue(), minutPrimaZiField.getValue(), numarDeZileField.getValue());
             setRequest(appointment);
-            UserService.addAppointmentInAppointmentsList(getCurrentOwner().getUsername(), appointment);// add appointment in appointment list for Owner
+            UserService.addAppointmentInAppointmentsList(currentOwner.getUsername(), appointment);// add appointment in appointment list for Owner
             appointmentMessage.setText("Request created successfully!");
         } catch (AppointmentAlreadyExistsException e) {
             appointmentMessage.setText(e.getMessage());
@@ -175,7 +181,8 @@ public class SeeAvailablePetSitterController {
     public void handleAddRequest() {
         try {
             Appointment appointment = getRequest();
-            UserService.addAppointmentInAppointmentsList(getCurrentOwner().getUsername(), appointment);// add appointment in appointment list for Owner
+            Owner currentOwner = UserService.getOwner(usernameField.getText());
+            UserService.addAppointmentInAppointmentsList(currentOwner.getUsername(), appointment);// add appointment in appointment list for Owner
             appointmentMessage.setText("Request created successfully!");
         } catch (AppointmentAlreadyExistsException e) {
             appointmentMessage.setText(e.getMessage());
