@@ -32,6 +32,8 @@ public class DetailsAboutOwnerController {
     private TextField addressOwnerField;
     @FXML
     private TextField descriptionOwnerField;
+    @FXML
+    private Button buttonAllDone;
 
 
     @FXML
