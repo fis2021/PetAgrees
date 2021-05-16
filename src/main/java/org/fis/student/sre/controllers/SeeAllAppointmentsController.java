@@ -21,15 +21,15 @@ import org.fis.student.sre.model.Appointment;
 import org.fis.student.sre.model.User;
 import org.fis.student.sre.services.UserService;
 
-
 import java.io.IOException;
 import java.util.Objects;
 
 public class SeeAllAppointmentsController {
+
     private static ObservableList<Appointment> appointments;
     private static ObjectRepository<Appointment> REPOSITORY = UserService.getAppointmentRepository();
-    private static User currentUser;
-    private static String id, username;
+    //private static User currentUser;
+   // private static String id, username;
 
     @FXML
     public TableView<Appointment> appointmentTable;
@@ -51,6 +51,8 @@ public class SeeAllAppointmentsController {
     @FXML
     private Label numarDeZileLabel;
 
+    @FXML
+    private TextField usernameField;
 
     @FXML
     private Button buttonLogOut;
@@ -61,25 +63,26 @@ public class SeeAllAppointmentsController {
     @FXML
     private TextField searchTextField;
 
-    public static void getAllAppointments(){
+    public void getAllAppointments(){
         ObservableList<Appointment> newList = FXCollections.observableArrayList();
         Cursor<Appointment> cursor = REPOSITORY.find(FindOptions.sort("usernameOwner", SortOrder.Ascending));
+        User currentUser = UserService.getUser(usernameField.getText());
         for(Appointment appointment:cursor) {
-            if(Objects.equals(getCurrentUser().getUsername(), appointment.getUsernamePetSitter())) {
+            if(Objects.equals(currentUser.getUsername(), appointment.getUsernamePetSitter())) {
                 newList.add(appointment);
             }
         }
         appointments = newList;
     }
 
-    public static User getCurrentUser() {
+   /* public static User getCurrentUser() {
         return currentUser;
     }
 
     public void setUser(User user)
     {
         this.currentUser=user;
-    }
+    }*/
 
     @FXML
     public void initialize() {
