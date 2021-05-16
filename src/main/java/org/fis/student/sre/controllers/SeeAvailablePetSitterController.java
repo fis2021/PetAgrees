@@ -21,7 +21,6 @@ import org.dizitart.no2.objects.Cursor;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.fis.student.sre.exceptions.AppointmentAlreadyExistsException;
 import org.fis.student.sre.model.Appointment;
-import org.fis.student.sre.model.Owner;
 import org.fis.student.sre.model.User;
 import org.fis.student.sre.services.UserService;
 
