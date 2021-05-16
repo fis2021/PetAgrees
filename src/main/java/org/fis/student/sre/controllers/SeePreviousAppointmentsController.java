@@ -21,11 +21,13 @@ import org.fis.student.sre.model.Appointment;
 import org.fis.student.sre.model.User;
 import org.fis.student.sre.services.UserService;
 
-
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 
-public class SeeAllAppointmentsController {
+public class SeePreviousAppointmentsController {
+
     private static ObservableList<Appointment> appointments;
     private static ObjectRepository<Appointment> REPOSITORY = UserService.getAppointmentRepository();
     private static User currentUser;
@@ -37,15 +39,9 @@ public class SeeAllAppointmentsController {
     public TableColumn<Appointment, String> appointmentNameColumn;
 
     @FXML
-    private Label usernameOwnerLabel;
-    @FXML
-    private Label telephoneOwnerLabel;
-    @FXML
-    private Label descriptionLabel;
+    private Label usernamePetSitterLabel;
     @FXML
     private Label statusLabel;
-    @FXML
-    private Label addressLabel;
     @FXML
     private Label dataPrimaZiLabel;
     @FXML
@@ -63,9 +59,10 @@ public class SeeAllAppointmentsController {
 
     public static void getAllAppointments(){
         ObservableList<Appointment> newList = FXCollections.observableArrayList();
-        Cursor<Appointment> cursor = REPOSITORY.find(FindOptions.sort("usernameOwner", SortOrder.Ascending));
+        Cursor<Appointment> cursor = REPOSITORY.find(FindOptions.sort("usernamePetSitter", SortOrder.Ascending));
         for(Appointment appointment:cursor) {
-            if(Objects.equals(getCurrentUser().getUsername(), appointment.getUsernamePetSitter())) {
+            Calendar c = Calendar.getInstance();
+            if(Objects.equals(getCurrentUser().getUsername(), appointment.getUsernameOwner()) && (appointment.getDataPrimaZi().compareTo(c) == -1)) {
                 newList.add(appointment);
             }
         }
@@ -86,7 +83,7 @@ public class SeeAllAppointmentsController {
         getAllAppointments();
         Platform.runLater(() -> {
 
-            appointmentNameColumn.setCellValueFactory(new PropertyValueFactory<>("usernameOwner"));
+            appointmentNameColumn.setCellValueFactory(new PropertyValueFactory<>("usernamePetSitter"));
             appointmentTable.setItems(appointments);
 
             showAppointmentDetails(null);
@@ -105,7 +102,7 @@ public class SeeAllAppointmentsController {
                                 }
 
                                 String lowerCaseFilter = newValue.toLowerCase();
-                                if (offer.getUsernameOwner().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                                if (offer.getUsernamePetSitter().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                                     return true;
                                 }
                                 return false;
@@ -121,7 +118,7 @@ public class SeeAllAppointmentsController {
             appointmentTable.setRowFactory(offer -> {
                 TableRow<Appointment> row = new TableRow<>();
                 row.setOnMouseClicked(event -> {
-                    if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    if (event.getClickCount() == 1 && !row.isEmpty()) {
                         try {
                             Appointment selectedAppointment = appointmentTable.getSelectionModel().getSelectedItem();
                             if (selectedAppointment != null) {
@@ -141,19 +138,13 @@ public class SeeAllAppointmentsController {
 
     public void showAppointmentDetails(Appointment appointment) {
         if(appointment != null) {
-            usernameOwnerLabel.setText(appointment.getUsernameOwner());
-            telephoneOwnerLabel.setText(String.valueOf(appointment.getTelephoneOwner()));
-            descriptionLabel.setText(appointment.getDescription());
+            usernamePetSitterLabel.setText(appointment.getUsernamePetSitter());
             statusLabel.setText(appointment.getStatus());
-            addressLabel.setText(appointment.getAddress());
             dataPrimaZiLabel.setText(appointment.getDataPrimaZiAsString());
             numarDeZileLabel.setText(String.valueOf(appointment.getNumarDeZile()));
         } else {
-            usernameOwnerLabel.setText("");
-            telephoneOwnerLabel.setText("");
-            descriptionLabel.setText("");
+            usernamePetSitterLabel.setText("");
             statusLabel.setText("");
-            addressLabel.setText("");
             dataPrimaZiLabel.setText("");
             numarDeZileLabel.setText("");
         }
