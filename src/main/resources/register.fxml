@@ -4,9 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.image.ImageView?>
 
-<?import javafx.scene.image.ImageView?>
+
 <GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600"
           vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal"
           xmlns:fx="http://javafx.com/fxml/1"
@@ -28,10 +27,6 @@
 
     <ChoiceBox fx:id="role" id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
     </ChoiceBox>
-
-    <Label text="Image:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-
-    <ImageView fx:id="imageOfCertification" id="imageOfCertification" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
     <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="9" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">

@@ -1,6 +1,5 @@
 package org.fis.student.sre.model;
 
-import javafx.scene.image.ImageView;
 
 
 public class Owner extends User{
@@ -8,8 +7,8 @@ public class Owner extends User{
     private String descriptionOwner;
     private String addressOwner;
 
-    public Owner (String username, String password, String role, ImageView imageOfCertification, int telephoneOwner, String descriptionOwner, String addressOwner) {
-        super(username, password, role, imageOfCertification);
+    public Owner (String username, String password, String role,  int telephoneOwner, String descriptionOwner, String addressOwner) {
+        super(username, password, role);
         this.telephoneOwner = telephoneOwner;
         this.descriptionOwner = descriptionOwner;
         this.addressOwner = addressOwner;

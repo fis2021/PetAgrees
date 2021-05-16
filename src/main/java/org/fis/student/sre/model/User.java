@@ -1,6 +1,5 @@
 package org.fis.student.sre.model;
 
-import javafx.scene.image.ImageView;
 import org.dizitart.no2.objects.Id;
 
 import java.util.ArrayList;
@@ -10,29 +9,16 @@ public class User {
     private String username;
     private String password;
     private String role;
-    protected ImageView imageOfCertification;
-    private String imagePath;
     private ArrayList<Appointment> appointments;
     private int listIndex;
     private int max = 50;
 
-    public User(String username, String password, String role, ImageView imageOfCertification) {
+    public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
         this.role = role;
-        this.imageOfCertification = imageOfCertification;
         this.appointments = new ArrayList <Appointment>(max);
         this.listIndex = 0;
-    }
-
-    public User(String username, String password, String role, ImageView imageOfCertification, String imagePath) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
-        this.imageOfCertification = imageOfCertification;
-        this.appointments = new ArrayList <Appointment>(max);
-        this.listIndex = 0;
-        this.imagePath = imagePath;
     }
 
     public User(String username, String password) {
@@ -69,22 +55,8 @@ public class User {
     }
 
     public void setRole(String role) {
-
         this.role = role;
     }
-
-    public ImageView getImageOfCertification() {
-
-        return this.imageOfCertification;
-    }
-
-    public void setImageOfCertification(ImageView imageOfCertification) {
-
-        this.imageOfCertification = imageOfCertification;
-    }
-
-    public String getImagePath() { return imagePath; }
-    public void setImage(String image) {imagePath = imagePath;}
 
 
     @Override
@@ -96,7 +68,6 @@ public class User {
 
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (imageOfCertification != null ? !imageOfCertification.equals(user.imageOfCertification) : user.imageOfCertification != null) return false;
         return role != null ? role.equals(user.role) : user.role == null;
     }
 

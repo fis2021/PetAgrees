@@ -63,14 +63,13 @@ class UserServiceTest {
 
     @Test
     void userIsAddedToDatabase() throws UsernameAlreadyExistsException {
-        UserService.addUser("user1","user1","Client", null);
+        UserService.addUser("user1","user1","Client");
         assertThat(UserService.getAllUsers()).size().isEqualTo(1);
         User user1 = UserService.getAllUsers().get(0);
         assertThat(user1).isNotNull();
         assertThat(user1.getUsername()).isEqualTo("user1");
         assertThat(user1.getPassword()).isEqualTo(UserService.encodePassword("user1","user1"));
         assertThat(user1.getRole()).isEqualTo("Client");
-        assertThat(user1.getImageOfCertification().equals(null));
     }
 
 }

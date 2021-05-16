@@ -1,6 +1,6 @@
 package org.fis.student.sre.services;
 
-import javafx.scene.image.ImageView;
+
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.fis.student.sre.exceptions.*;
@@ -28,26 +28,22 @@ public class UserService {
         Nitrite database = Nitrite.builder()
                 .filePath(getPathToFile("PetAgrees.db").toFile())
                 .openOrCreate("test", "test");
-
         userRepository = database.getRepository(User.class);
-        appointmentRepository = database.getRepository(Appointment.class);
-    }
 
-    public static void addUser(String username, String password, String role, ImageView imageOfCertification) throws UsernameAlreadyExistsException {
-        checkUserDoesNotAlreadyExist(username);
-        userRepository.insert(new User(username, encodePassword(username, password), role, imageOfCertification));
+        FileSystemService.initDirectory();
+        Nitrite database2 = Nitrite.builder()
+                .filePath(getPathToFile("Appointment.db").toFile())
+                .openOrCreate("test", "test");
+
+        appointmentRepository = database.getRepository(Appointment.class);
     }
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
-        userRepository.insert(new User(username, encodePassword(username, password), role, null));
-    }
-    public static void addUser(User user) throws UsernameAlreadyExistsException {
-        checkUserDoesNotAlreadyExist(user.getUsername());
-        userRepository.insert(new User(user.getUsername(), encodePassword(user.getUsername(), user.getPassword()), user.getRole(), user.getImageOfCertification()));
+        userRepository.insert(new User(username, encodePassword(username, password), role));
     }
 
-    public static void addOwner(String username, String password, ImageView imageOfCertification, int telephoneOwner, String descriptionOwner, String addressOwner) throws UsernameAlreadyExistsException {
+    public static void addOwner(String username, String password,  int telephoneOwner, String descriptionOwner, String addressOwner) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         userRepository.insert(new Owner(username, encodePassword(username, password), telephoneOwner, descriptionOwner, addressOwner));
     }
