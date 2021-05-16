@@ -25,6 +25,10 @@
     <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
     </ChoiceBox>
 
+    <Label text="Confirm your username:" GridPane.rowIndex="5" />
+    <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+
     <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="8" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
         <Button fx:id="buttonConfirmStatusRequest" id="buttonConfirmStatusRequest" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleRequestAction" text="Confirm Status">
