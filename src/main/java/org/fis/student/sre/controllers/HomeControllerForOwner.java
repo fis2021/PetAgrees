@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.fis.student.sre.model.User;
@@ -16,6 +17,12 @@ public class HomeControllerForOwner {
 
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private Button buttonAvailablePetSitterList;
+    @FXML
+    private Button buttonPreviousAppointmentsList;
+    @FXML
+    private Button buttonLogOut;
 
 
     public void setUser(User u){
@@ -26,26 +33,24 @@ public class HomeControllerForOwner {
     @FXML
     private void loadAvailablePetSitterListPage(){
         try {
-            Stage stage = (Stage) borderPane.getScene().getWindow();
-            Parent loginRoot = FXMLLoader.load(getClass().getResource("/fxml/seeAvailablePetSitterList.fxml"));
-            Scene scene = new Scene(loginRoot, 640, 800);
-            stage.setTitle("This is your available list :)");
-            stage.setScene(scene);
+            Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("seeAvailablePetSitterList.fxml"));
+            Stage stage = (Stage) (buttonAvailablePetSitterList.getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error!\n");
         }
     }
 
     @FXML
     private void  loadPreviousAppointmentsListPage(){
         try {
-            Stage stage = (Stage) borderPane.getScene().getWindow();
-            Parent loginRoot = FXMLLoader.load(getClass().getResource("/fxml/seePreviousAppointmentsList.fxml"));
-            Scene scene = new Scene(loginRoot, 640, 800);
-            stage.setTitle("This is your previous appointments list :)");
-            stage.setScene(scene);
+            Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("seePreviousAppointmentsList.fxml"));
+            Stage stage = (Stage) (buttonPreviousAppointmentsList.getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error!\n");
         }
     }
 
@@ -53,13 +58,12 @@ public class HomeControllerForOwner {
     @FXML
     private void loadLoginPage(){
         try {
-            Stage stage = (Stage) borderPane.getScene().getWindow();
-            Parent loginRoot = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-            Scene scene = new Scene(loginRoot, 640, 800);
-            stage.setTitle("PetAgrees - Login");
-            stage.setScene(scene);
+            Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+            Stage stage = (Stage) (buttonLogOut.getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error!\n");
         }
     }
 

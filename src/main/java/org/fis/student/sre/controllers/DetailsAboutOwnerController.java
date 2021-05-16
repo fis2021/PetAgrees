@@ -37,7 +37,7 @@ public class DetailsAboutOwnerController {
     @FXML
     public void handleDetailsAboutOwnerAction(ActionEvent event) {
         try {
-            UserService.addOwner(getCurrentUser().getUsername(), getCurrentUser().getPassword(),getCurrentUser().getImageOfCertification(), telephoneOwnerField.getValue(), addressOwnerField.getText(), descriptionOwnerField.getText());
+            UserService.addOwner(getCurrentUser().getUsername(), getCurrentUser().getPassword(), telephoneOwnerField.getValue(), addressOwnerField.getText(), descriptionOwnerField.getText());
             detailsMessage.setText("Account created successfully!");
             loadHomePageForOwner();
             return;

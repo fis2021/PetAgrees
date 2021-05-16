@@ -1,14 +1,12 @@
 package org.fis.student.sre.model;
 
-//import java.awt.*;
-import java.awt.image.BufferedImage;
 
 
 public class PetSitter extends User{
 
 
-    public PetSitter (String username, String password, String role, BufferedImage imageOfCertification) {
-        super(username, password, role, imageOfCertification);
+    public PetSitter (String username, String password, String role) {
+        super(username, password, role);
     }
 
 

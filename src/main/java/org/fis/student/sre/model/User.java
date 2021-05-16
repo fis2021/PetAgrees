@@ -2,7 +2,6 @@ package org.fis.student.sre.model;
 
 import org.dizitart.no2.objects.Id;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class User {
@@ -10,16 +9,14 @@ public class User {
     private String username;
     private String password;
     private String role;
-    protected BufferedImage imageOfCertification;
     private ArrayList<Appointment> appointments;
     private int listIndex;
     private int max = 50;
 
-    public User(String username, String password, String role, BufferedImage imageOfCertification) {
+    public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
         this.role = role;
-        this.imageOfCertification = imageOfCertification;
         this.appointments = new ArrayList <Appointment>(max);
         this.listIndex = 0;
     }
@@ -58,23 +55,7 @@ public class User {
     }
 
     public void setRole(String role) {
-
         this.role = role;
-    }
-
-    public BufferedImage getImageOfCertification() {
-
-        return this.imageOfCertification;
-    }
-
-    public void setImageOfCertification(BufferedImage role) {
-
-        this.imageOfCertification = imageOfCertification;
-    }
-
-    public int getTypeOfImage() {
-
-        return this.imageOfCertification.getType();
     }
 
 
@@ -87,7 +68,6 @@ public class User {
 
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (imageOfCertification != null ? !imageOfCertification.equals(user.imageOfCertification) : user.imageOfCertification != null) return false;
         return role != null ? role.equals(user.role) : user.role == null;
     }
 

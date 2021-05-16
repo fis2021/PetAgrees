@@ -1,5 +1,6 @@
 package org.fis.student.sre.controllers;
 
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,8 +25,7 @@ import org.junit.jupiter.api.Test;
 import static org.testfx.assertions.api.Assertions.assertThat;
 
 @ExtendWith(ApplicationExtension.class)
-public class SeeAllAppointmentsControllerTest {
-
+public class RequestControllerTest {
     @BeforeEach
     void setUp() throws Exception, AppointmentAlreadyExistsException {
         FileSystemService.APPLICATION_FOLDER = ".test-PetAgrees";
@@ -47,35 +47,25 @@ public class SeeAllAppointmentsControllerTest {
     }
 
     @Test
-    void seeAllAppointmentsTest(FxRobot robot) {
+    void requestAsAcceptTest(FxRobot robot) throws AppointmentAlreadyExistsException {
+        Calendar dataPrimaZi1 = new GregorianCalendar(2021, 1, 1, 1, 1);
+        Appointment appointment1 = new Appointment("ADMIN", "1", 11111, "description1", "address1", dataPrimaZi1, 1);
+        UserService.addAppointmentInAppointmentsList("ADMIN", appointment1);
+        appointment1.setStatusAsAccept();
+        robot.clickOn("#buttonConfirmStatusRequest");
+        assertThat(appointment1.getStatus()).isEqualTo("ACCEPT");
 
-        assertThat(UserService.getAllAppointments().size()).isEqualTo(2);
-
-
-        robot.clickOn("#appointmentTable");
-        robot.type(KeyCode.DOWN);
-        robot.moveTo("ADMIN").doubleClickOn();
-
-        robot.moveTo("#usernameOwner");
-        assertThat(robot.lookup("#usernameOwner").queryText()).hasText("1");
-
-        robot.moveTo("#telephoneOwner");
-        assertThat(robot.lookup("#telephoneOwner").queryText()).hasText("11111");
-
-        robot.moveTo("#description");
-        assertThat(robot.lookup("#description").queryText()).hasText("description1");
-
-        robot.moveTo("#address");
-        assertThat(robot.lookup("#address").queryText()).hasText("address1");
-
-        robot.moveTo("#numarDeZileLabel");
-        assertThat(robot.lookup("#numarDeZileLabel").queryText()).hasText("1");
-
-
-
-
-        robot.clickOn("#buttonLogOut");
     }
 
+    @Test
+    void requestAsDenyTest(FxRobot robot) throws AppointmentAlreadyExistsException {
+        Calendar dataPrimaZi1 = new GregorianCalendar(2021, 1, 1, 1, 1);
+        Appointment appointment1 = new Appointment("ADMIN", "1", 11111, "description1", "address1", dataPrimaZi1, 1);
+        UserService.addAppointmentInAppointmentsList("ADMIN", appointment1);
+        appointment1.setStatusAsDeny();
+        robot.clickOn("#buttonConfirmStatusRequest");
+        assertThat(appointment1.getStatus()).isEqualTo("DENY");
+
+    }
 
 }

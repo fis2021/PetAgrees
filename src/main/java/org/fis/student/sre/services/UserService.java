@@ -1,5 +1,6 @@
 package org.fis.student.sre.services;
 
+
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.fis.student.sre.exceptions.*;
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import java.awt.image.BufferedImage;
 
 import static org.fis.student.sre.services.FileSystemService.getPathToFile;
 
@@ -27,22 +27,22 @@ public class UserService {
         Nitrite database = Nitrite.builder()
                 .filePath(getPathToFile("PetAgrees.db").toFile())
                 .openOrCreate("test", "test");
-
         userRepository = database.getRepository(User.class);
-        appointmentRepository = database.getRepository(Appointment.class);
-    }
 
-    public static void addUser(String username, String password, String role, BufferedImage imageOfCertification) throws UsernameAlreadyExistsException {
-        checkUserDoesNotAlreadyExist(username);
-        userRepository.insert(new User(username, encodePassword(username, password), role, imageOfCertification));
+        FileSystemService.initDirectory();
+        Nitrite database2 = Nitrite.builder()
+                .filePath(getPathToFile("Appointment.db").toFile())
+                .openOrCreate("test", "test");
+
+        appointmentRepository = database.getRepository(Appointment.class);
     }
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
-        userRepository.insert(new User(username, encodePassword(username, password), role, null));
+        userRepository.insert(new User(username, encodePassword(username, password), role));
     }
 
-    public static void addOwner(String username, String password, BufferedImage imageOfCertification, int telephoneOwner, String descriptionOwner, String addressOwner) throws UsernameAlreadyExistsException {
+    public static void addOwner(String username, String password,  int telephoneOwner, String descriptionOwner, String addressOwner) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         userRepository.insert(new Owner(username, encodePassword(username, password), telephoneOwner, descriptionOwner, addressOwner));
     }
@@ -231,4 +231,6 @@ public class UserService {
     public static ObjectRepository<User> getUserRepository() {
         return userRepository;
     }
+
+
 }

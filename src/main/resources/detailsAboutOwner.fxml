@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import javafx.scene.image.ImageView?>
+
 <?import com.sun.javafx.scene.control.IntegerField?>
 <GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600" vgap="10"
           xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
@@ -27,10 +27,11 @@
 
     <TextField fx:id="addressOwnerField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-    <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    <Text fx:id="detailsMessage" GridPane.columnIndex="1" GridPane.rowIndex="9" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <children>
-            <Button onAction="#handleDetailsAboutOwnerAction" text="All done" />
+            <Button fx:id="buttonAllDone" id="buttonAllDone" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleDetailsAboutOwnerAction" text="All done">
+            </Button>
         </children>
     </HBox>
     <columnConstraints>

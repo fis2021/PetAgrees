@@ -27,12 +27,15 @@
 
     <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="8" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
-        <Button onAction="#handleRequestAction" text="Confirm Status" />
+        <Button fx:id="buttonConfirmStatusRequest" id="buttonConfirmStatusRequest" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleRequestAction" text="Confirm Status">
+        </Button>
     </HBox>
     <HBox alignment="bottom_right" spacing="10" GridPane.rowIndex="8" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-     <Button onAction="#loadBackAction" text="Back" />
-     <Button onAction="#loadLoginAction" text="Log out" GridPane.rowIndex="6" />
+    <Button fx:id="buttonBack" id="buttonBack" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadBackAction" text="Back">
+    </Button>
+    <Button fx:id="buttonLogOut" id="buttonLogOut" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadLoginAction" text="Log out" GridPane.rowIndex="6">
+    </Button>
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />

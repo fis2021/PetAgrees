@@ -2,6 +2,7 @@ package org.fis.student.sre.controllers;
 
 import org.apache.commons.io.FileUtils;
 import org.fis.student.sre.exceptions.AppointmentAlreadyExistsException;
+import org.fis.student.sre.exceptions.NotExistingAppointmentException;
 import org.fis.student.sre.exceptions.UsernameAlreadyExistsException;
 import org.fis.student.sre.model.Appointment;
 import org.fis.student.sre.services.FileSystemService;
@@ -14,8 +15,7 @@ import java.util.GregorianCalendar;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class SeeAllAppointmentsControllerJUnitTest {
-
+public class RequestControllerJUnitTest {
     @BeforeAll
     static void beforeAll() {
         System.out.println("Before All");
@@ -38,7 +38,7 @@ class SeeAllAppointmentsControllerJUnitTest {
     @Test
     @DisplayName("Appointments are added in database and saved in list")
     void testListWithAppointmentsIsCreated() throws UsernameAlreadyExistsException, AppointmentAlreadyExistsException {
-        UserService.addUser("ADMIN", "ADMIN", "ADMIN");
+        UserService.addUser("ADMIN", "ADMIN", "PetSitter");
 
         Calendar dataPrimaZi1 = new GregorianCalendar(2021, 1, 1, 1, 1);
         Calendar dataPrimaZi2 = new GregorianCalendar(2021, 2, 2, 2, 2);
@@ -54,6 +54,28 @@ class SeeAllAppointmentsControllerJUnitTest {
         SeeAllAppointmentsController.getAppointments();
         assertThat(SeeAllAppointmentsController.getAppointments()).isNotNull();
         assertThat(SeeAllAppointmentsController.getAppointments()).size().isEqualTo(2);
+    }
+
+    @Test
+    void testIfARequestIsDeny() throws UsernameAlreadyExistsException, NotExistingAppointmentException {
+        UserService.addUser("ADMIN", "ADMIN", "PetSitter");
+        Calendar dataPrimaZi1 = new GregorianCalendar(2021, 1, 1, 1, 1);
+        Appointment appointment1 = new Appointment("ADMIN", "1", 11111, "description1", "address1", dataPrimaZi1, 1);
+
+        UserService.denyAppointment(appointment1);
+        assertThat(appointment1.getStatus()).isEqualTo("DENY");
+
+    }
+
+    @Test
+    void testIfARequestIsAccept() throws UsernameAlreadyExistsException, NotExistingAppointmentException {
+        UserService.addUser("ADMIN", "ADMIN", "PetSitter");
+        Calendar dataPrimaZi1 = new GregorianCalendar(2021, 1, 1, 1, 1);
+        Appointment appointment1 = new Appointment("ADMIN", "1", 11111, "description1", "address1", dataPrimaZi1, 1);
+
+        UserService.acceptAppointment(appointment1);
+        assertThat(appointment1.getStatus()).isEqualTo("ACCEPT");
+
     }
 
 }

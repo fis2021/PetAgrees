@@ -162,26 +162,24 @@ public class SeeAllAppointmentsController {
     @FXML
     private void loadLoginAction(){
         try {
-            Stage stage = (Stage) buttonLogOut.getScene().getWindow();
-            Parent loginRoot = FXMLLoader.load(getClass().getResource("/FXML/login.fxml"));
-            Scene scene = new Scene(loginRoot, 640, 480);
-            stage.setTitle("PetAgrees -login");
-            stage.setScene(scene);
+            Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+            Stage stage = (Stage) (buttonLogOut.getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error!\n");
         }
     }
 
     @FXML
     private void loadBackAction(){
         try {
-            Stage stage = (Stage) buttonBack.getScene().getWindow();
-            Parent loginRoot = FXMLLoader.load(getClass().getResource("/FXML/homeForPetSitter.fxml"));
-            Scene scene = new Scene(loginRoot, 640, 480);
-            stage.setTitle("PetAgrees for Pet Sitter");
-            stage.setScene(scene);
+            Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("homeForPetSitter.fxml"));
+            Stage stage = (Stage) (buttonBack.getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error!\n");
         }
     }
 

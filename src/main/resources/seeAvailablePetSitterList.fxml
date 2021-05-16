@@ -54,9 +54,9 @@
                                 <IntegerField fx:id="numarDeZileField"  GridPane.columnIndex="1" GridPane.rowIndex="5" />
                             </children>
                         </GridPane>
-                        <Button fx:id="buttonBack" id="Back" layoutX="151.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadBackAction" text="Back" textFill="#f5f5f7">
+                        <Button fx:id="buttonBack" id="buttonBack" layoutX="151.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadBackAction" text="Back">
                         </Button>
-                        <Button fx:id="buttonAddRequest" id="Add request" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleAddRequest" text="Add request" textFill="#f5f5f7">
+                        <Button fx:id="buttonAdd" id="buttonAdd" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleAddRequest" text="Add request">
                         </Button>
                     </children>
                 </AnchorPane>

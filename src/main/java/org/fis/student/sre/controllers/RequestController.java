@@ -79,41 +79,40 @@ public class RequestController {
     @FXML
     private void loadRequestAction(){
         try {
-            Stage stage = (Stage) borderPane.getScene().getWindow();
-            Parent loginRoot = FXMLLoader.load(getClass().getResource("/fxml/requestList.fxml"));
-            Scene scene = new Scene(loginRoot, 640, 800);
-            stage.setTitle("This is your requests list :)");
-            stage.setScene(scene);
+            Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("requestList.fxml"));
+            Stage stage = (Stage) (buttonConfirmStatusRequest.getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error!\n");
         }
     }
 
     @FXML
     private void loadLoginAction(){
         try {
-            Stage stage = (Stage) buttonLogOut.getScene().getWindow();
-            Parent loginRoot = FXMLLoader.load(getClass().getResource("/FXML/login.fxml"));
-            Scene scene = new Scene(loginRoot, 640, 480);
-            stage.setTitle("PetAgrees -login");
-            stage.setScene(scene);
+            Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+            Stage stage = (Stage) (buttonLogOut.getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error!\n");
         }
     }
 
     @FXML
     private void loadBackAction(){
         try {
-            Stage stage = (Stage) buttonBack.getScene().getWindow();
-            Parent loginRoot = FXMLLoader.load(getClass().getResource("/FXML/homeForPetSitter.fxml"));
-            Scene scene = new Scene(loginRoot, 640, 480);
-            stage.setTitle("PetAgrees for Pet Sitter");
-            stage.setScene(scene);
+            Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("homeForPetSitter.fxml"));
+            Stage stage = (Stage) (buttonBack.getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error!\n");
         }
     }
+
+
 
     public static User getCurrentUser() {
         return currentUser;
