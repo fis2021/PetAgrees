@@ -78,6 +78,10 @@ public class SeeAvailablePetSitterController {
         petSitters = newList;
     }
 
+    public static ObservableList<User> getPetSitters() {
+        return petSitters;
+    }
+
     public static Owner getCurrentOwner() {
         return currentOwner;
     }

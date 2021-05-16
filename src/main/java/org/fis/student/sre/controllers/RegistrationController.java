@@ -20,6 +20,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.embed.swing.SwingFXUtils;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -53,6 +55,7 @@ public class RegistrationController {
 
     @FXML
     public ImageView imageOfCertification;
+
     private String imagePath;
 
     public User getCurrentUser() {
@@ -129,27 +132,22 @@ public class RegistrationController {
 
     @FXML
     private void loadHomePageForPetSitter() {
-        try {
+        /*try {
             Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
             Stage stage = (Stage) (buttonLogIn.getScene().getWindow());
             stage.setScene(new Scene(root));
         } catch (Exception e) {
             System.out.println("Error!\n");
-        }
-       /* try{
-            User u = UserService.getUser(usernameField.getText());
-            Stage stage = (Stage) buttonRegister.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeForPetSitter.fxml"));
-            Parent homeRoot = loader.load();
-            HomeControllerForPetSitter controller = loader.getController();
-            controller.setUser(u);
-            stage.setUserData(u);
-            Scene scene = new Scene(homeRoot, 640, 800);
+        }*/
+        try {
+            Stage stage = (Stage) registrationMessage.getScene().getWindow();
+            Parent viewStudentsRoot = FXMLLoader.load(getClass().getResource("/fxml/homeForPetSitter.fxml"));
+            Scene scene = new Scene(viewStudentsRoot, 640, 480);
             stage.setTitle("PetAgrees for PetSitter - Home");
             stage.setScene(scene);
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     @FXML
@@ -169,4 +167,31 @@ public class RegistrationController {
             e.printStackTrace();
         }
     }
+
+    /*@FXML
+    private void handleChooseImageAction(){
+        JFrame frame = new JFrame();
+        JFileChooser fileChooser = new JFileChooser();
+
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(images, new String[] {"JPG", "JPEG"});
+        fileChooser.setFileFilter(filter);
+
+        fileChooser.showOpenDialog(frame);
+        File selectedFile = fileChooser.getSelectedFile();
+        BufferedImage bufferedImage;
+        try {
+            bufferedImage = ImageIO.read(new File(imagePath));
+            javafx.scene.image.Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+            imageOfCertification.setImage(image);
+        }
+        catch (Exception e){
+            try {
+                bufferedImage = ImageIO.read(new File(DUNISem2FISFIS_ProjectsrcmainresourcesImages404.png));
+                javafx.scene.image.Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                imageOfCertification.setImage(image);
+            }
+            catch(IOException ex){}
+        }
+    }*/
 }

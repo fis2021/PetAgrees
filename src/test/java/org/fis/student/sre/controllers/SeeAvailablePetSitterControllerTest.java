@@ -1,5 +1,6 @@
 package org.fis.student.sre.controllers;
 
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,7 +25,7 @@ import org.junit.jupiter.api.Test;
 import static org.testfx.assertions.api.Assertions.assertThat;
 
 @ExtendWith(ApplicationExtension.class)
-public class SeeAllAppointmentsControllerTest {
+public class SeeAvailablePetSitterControllerTest {
 
     @BeforeEach
     void setUp() throws Exception, AppointmentAlreadyExistsException {
@@ -32,9 +33,7 @@ public class SeeAllAppointmentsControllerTest {
         FileSystemService.initDirectory();
         FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
         UserService.initDatabase();
-        Calendar dataPrimaZi1 = new GregorianCalendar(2021, 1, 1, 1, 1);
-        Appointment appointment1 = new Appointment("ADMIN", "1", 11111, "description1", "address1", dataPrimaZi1, 1);
-        UserService.addAppointmentInAppointmentsList("ADMIN", appointment1);
+        UserService.addUser("ADMIN", "ADMIN", "Owner");
     }
 
     @Start
@@ -56,25 +55,25 @@ public class SeeAllAppointmentsControllerTest {
         robot.type(KeyCode.DOWN);
         robot.moveTo("ADMIN").doubleClickOn();
 
-        robot.moveTo("#usernameOwner");
-        assertThat(robot.lookup("#usernameOwner").queryText()).hasText("1");
+        robot.clickOn("#anPrimaZiField");
+        robot.write("2021");
 
-        robot.moveTo("#telephoneOwner");
-        assertThat(robot.lookup("#telephoneOwner").queryText()).hasText("11111");
+        robot.clickOn("#lunaPrimaZiField");
+        robot.write("1");
 
-        robot.moveTo("#description");
-        assertThat(robot.lookup("#description").queryText()).hasText("description1");
+        robot.clickOn("#ziPrimaZiField");
+        robot.write("1");
 
-        robot.moveTo("#address");
-        assertThat(robot.lookup("#address").queryText()).hasText("address1");
+        robot.clickOn("#oraPrimaZiField");
+        robot.write("1");
 
-        robot.moveTo("#numarDeZileLabel");
-        assertThat(robot.lookup("#numarDeZileLabel").queryText()).hasText("1");
+        robot.clickOn("#minutPrimaZiField");
+        robot.write("1");
 
+        robot.clickOn("#numarDeZileField");
+        robot.write("1");
 
-
-
-        robot.clickOn("#buttonLogOut");
+        robot.clickOn("#buttonAdd");
     }
 
 
