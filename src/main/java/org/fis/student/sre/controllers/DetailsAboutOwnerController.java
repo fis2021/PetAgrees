@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -19,7 +20,7 @@ import org.fis.student.sre.services.UserService;
 import java.io.IOException;
 
 public class DetailsAboutOwnerController {
-    private static User currentUser;
+
 
     @FXML
     private BorderPane borderPane;
@@ -33,13 +34,15 @@ public class DetailsAboutOwnerController {
     @FXML
     private TextField descriptionOwnerField;
     @FXML
+    private TextField usernameField;
+    @FXML
     private Button buttonAllDone;
-
 
     @FXML
     public void handleDetailsAboutOwnerAction(ActionEvent event) {
         try {
-            UserService.addOwner(getCurrentUser().getUsername(), getCurrentUser().getPassword(), telephoneOwnerField.getValue(), addressOwnerField.getText(), descriptionOwnerField.getText());
+            User currentUser = UserService.getUser(usernameField.getText());
+            UserService.addOwner(currentUser.getUsername(), currentUser.getPassword(), telephoneOwnerField.getValue(), addressOwnerField.getText(), descriptionOwnerField.getText());
             detailsMessage.setText("Account created successfully!");
             loadHomePageForOwner();
             return;
@@ -51,24 +54,15 @@ public class DetailsAboutOwnerController {
 
     @FXML
     private void loadHomePageForOwner() {
-        try{
-            User u = UserService.getUser(getCurrentUser().getUsername());
-            Stage stage = (Stage) detailsMessage.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeForOwner.fxml"));
-            Parent homeRoot = loader.load();
-            HomeControllerForPetSitter controller = loader.getController();
-            controller.setUser(u);
-            stage.setUserData(u);
-            Scene scene = new Scene(homeRoot, 640, 800);
-            stage.setTitle("PetAgrees for Owner - Home");
-            stage.setScene(scene);
-        } catch (IOException e){
-            e.printStackTrace();
+        try {
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("homeForOwner.fxml"));
+            Stage stage = (Stage) (buttonAllDone.getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Error!\n");
         }
     }
 
-    public static User getCurrentUser() {
-        return currentUser;
-    }
 
 }
