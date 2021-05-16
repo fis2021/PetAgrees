@@ -27,6 +27,10 @@
 
     <TextField fx:id="addressOwnerField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
+    <Label text="Confirm your username:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+
+    <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
     <Text fx:id="detailsMessage" GridPane.columnIndex="1" GridPane.rowIndex="9" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <children>
