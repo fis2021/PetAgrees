@@ -33,7 +33,7 @@ public class LoginController {
     @FXML
     private Button buttonRegister;
 
-    private static User currentUser;
+    //private static User currentUser;
 
     public void setRegistrationConfirmation(){
         loginMessage.setText("Login successfully!");
@@ -57,6 +57,7 @@ public class LoginController {
         try{
             String stored_password = UserService.getHashedUserPassword(username);
             if(stored_password.equals(encoded_password)){
+                User currentUser = UserService.getUser(usernameField.getText());
                 if (currentUser.getRole().equals("PetSitter")) {
                     try {
                         Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("homeForPetSitter.fxml"));
@@ -89,9 +90,9 @@ public class LoginController {
         loginMessage.setText("Incorrect login!");
     }
 
-    public static User getCurrentUser() {
+    /*public static User getCurrentUser() {
         return currentUser;
-    }
+    }*/
 
     @FXML
     public void loadRegisterPage(){
@@ -105,7 +106,7 @@ public class LoginController {
         }
     }
 
-    @FXML
+    /*@FXML
     private void loadHomePageForPetSitter() {
 
         try{
@@ -140,7 +141,7 @@ public class LoginController {
         } catch (IOException e){
             e.printStackTrace();
         }
-    }
+    }*/
 
 
 
