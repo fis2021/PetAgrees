@@ -5,13 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.fis.student.sre.exceptions.UserNotFoundException;
 import org.fis.student.sre.exceptions.UsernameAlreadyExistsException;
 import org.fis.student.sre.model.User;
 import org.fis.student.sre.services.UserService;
@@ -22,7 +21,6 @@ import java.io.IOException;
 
 
 public class RegistrationController {
-    private static User currentUser;
 
     @FXML
     private BorderPane borderPane;
@@ -35,24 +33,17 @@ public class RegistrationController {
     private TextField usernameField;
     @FXML
     private ChoiceBox role;
-    
+
     @FXML
     private Button buttonLogIn;
 
     @FXML
     private Button buttonRegister;
 
-
     @FXML
     public void initialize() {
         role.getItems().addAll("Owner", "PetSitter");
     }
-
-
-    public User getCurrentUser() {
-        return currentUser;
-    }
-    public void setCurrentUser(User user) { this.currentUser = user;}
 
 
 
@@ -101,4 +92,6 @@ public class RegistrationController {
             System.out.println("Error!\n");
         }
     }
+
+
 }
