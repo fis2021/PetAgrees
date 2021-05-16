@@ -35,6 +35,13 @@ public class RegistrationController {
     private TextField usernameField;
     @FXML
     private ChoiceBox role;
+    
+    @FXML
+    private Button buttonLogIn;
+
+    @FXML
+    private Button buttonRegister;
+
 
     @FXML
     public void initialize() {
