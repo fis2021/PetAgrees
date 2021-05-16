@@ -1,5 +1,6 @@
 package org.fis.student.sre.services;
 
+import javafx.scene.image.ImageView;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.fis.student.sre.exceptions.*;
@@ -14,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import java.awt.image.BufferedImage;
 
 import static org.fis.student.sre.services.FileSystemService.getPathToFile;
 
@@ -33,7 +33,7 @@ public class UserService {
         appointmentRepository = database.getRepository(Appointment.class);
     }
 
-    public static void addUser(String username, String password, String role, BufferedImage imageOfCertification) throws UsernameAlreadyExistsException {
+    public static void addUser(String username, String password, String role, ImageView imageOfCertification) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         userRepository.insert(new User(username, encodePassword(username, password), role, imageOfCertification));
     }
@@ -42,8 +42,12 @@ public class UserService {
         checkUserDoesNotAlreadyExist(username);
         userRepository.insert(new User(username, encodePassword(username, password), role, null));
     }
+    public static void addUser(User user) throws UsernameAlreadyExistsException {
+        checkUserDoesNotAlreadyExist(user.getUsername());
+        userRepository.insert(new User(user.getUsername(), encodePassword(user.getUsername(), user.getPassword()), user.getRole(), user.getImageOfCertification()));
+    }
 
-    public static void addOwner(String username, String password, BufferedImage imageOfCertification, int telephoneOwner, String descriptionOwner, String addressOwner) throws UsernameAlreadyExistsException {
+    public static void addOwner(String username, String password, ImageView imageOfCertification, int telephoneOwner, String descriptionOwner, String addressOwner) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         userRepository.insert(new Owner(username, encodePassword(username, password), telephoneOwner, descriptionOwner, addressOwner));
     }
@@ -232,4 +236,6 @@ public class UserService {
     public static ObjectRepository<User> getUserRepository() {
         return userRepository;
     }
+
+
 }

@@ -54,9 +54,9 @@
                                 <Label fx:id="numarDeZileLabel" id="numarDeZile" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                             </children>
                         </GridPane>
-                        <Button fx:id="buttonBack" id="buttonBack" layoutX="151.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadBackAction" text="Back" textFill="#f5f5f7">
+                        <Button fx:id="buttonBack" id="buttonBack" layoutX="151.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadBackAction" text="Back">
                         </Button>
-                        <Button fx:id="buttonLogOut" id="buttonLogOut" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadLoginAction" text="Log out" textFill="#f5f5f7">
+                        <Button fx:id="buttonLogOut" id="buttonLogOut" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadLoginAction" text="Log out">
                         </Button>
                     </children>
                 </AnchorPane>

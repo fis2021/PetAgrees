@@ -27,10 +27,11 @@
 
     <TextField fx:id="addressOwnerField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-    <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    <Text fx:id="detailsMessage" GridPane.columnIndex="1" GridPane.rowIndex="9" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <children>
-            <Button onAction="#handleDetailsAboutOwnerAction" text="All done" />
+            <Button fx:id="buttonAllDone" id="buttonAllDone" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleDetailsAboutOwnerAction" text="All done">
+            </Button>
         </children>
     </HBox>
     <columnConstraints>

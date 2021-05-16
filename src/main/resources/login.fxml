@@ -21,10 +21,10 @@
 
     <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <Button fx:id="buttonRegister" id="Register" mnemonicParsing="false" onAction="#loadRegisterPage" text="Register" GridPane.columnIndex="0" GridPane.rowIndex="5">
+    <Button fx:id="buttonRegister" id="buttonRegister" mnemonicParsing="false" onAction="#loadRegisterPage" text="Register" GridPane.columnIndex="0" GridPane.rowIndex="5">
     </Button>
 
-    <Button fx:id="buttonLogIn" id="Log in" mnemonicParsing="false" onAction="#handleLoginAction" text="Log in" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+    <Button fx:id="buttonLogIn" id="buttonLogIn" mnemonicParsing="false" onAction="#handleLoginAction" text="Log in" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
     </Button>
 
     <Text fx:id="loginMessage" GridPane.columnIndex="1" GridPane.rowIndex="6" />

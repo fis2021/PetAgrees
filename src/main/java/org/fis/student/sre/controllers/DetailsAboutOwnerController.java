@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -23,6 +24,8 @@ public class DetailsAboutOwnerController {
     private BorderPane borderPane;
 
     @FXML
+    private Button buttonAllDone;
+    @FXML
     private Text detailsMessage;
     @FXML
     private IntegerField telephoneOwnerField;
@@ -37,29 +40,17 @@ public class DetailsAboutOwnerController {
         try {
             UserService.addOwner(getCurrentUser().getUsername(), getCurrentUser().getPassword(),getCurrentUser().getImageOfCertification(), telephoneOwnerField.getValue(), addressOwnerField.getText(), descriptionOwnerField.getText());
             detailsMessage.setText("Account created successfully!");
-            loadHomePageForOwner();
-            return;
+            try {
+                Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("homeForOwner.fxml"));
+                Stage stage = (Stage) (buttonAllDone.getScene().getWindow());
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                System.out.println("Error!\n");
+            }
 
         } catch (UsernameAlreadyExistsException e) {
             detailsMessage.setText(e.getMessage());
-        }
-    }
-
-    @FXML
-    private void loadHomePageForOwner() {
-        try{
-            User u = UserService.getUser(getCurrentUser().getUsername());
-            Stage stage = (Stage) detailsMessage.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeForOwner.fxml"));
-            Parent homeRoot = loader.load();
-            HomeControllerForPetSitter controller = loader.getController();
-            controller.setUser(u);
-            stage.setUserData(u);
-            Scene scene = new Scene(homeRoot, 640, 800);
-            stage.setTitle("PetAgrees for Owner - Home");
-            stage.setScene(scene);
-        } catch (IOException e){
-            e.printStackTrace();
         }
     }
 
@@ -67,4 +58,7 @@ public class DetailsAboutOwnerController {
         return currentUser;
     }
 
+    public void setUser(User u) {
+        this.currentUser = u;
+    }
 }

@@ -1,8 +1,8 @@
 package org.fis.student.sre.model;
 
+import javafx.scene.image.ImageView;
 import org.dizitart.no2.objects.Id;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class User {
@@ -10,18 +10,29 @@ public class User {
     private String username;
     private String password;
     private String role;
-    protected BufferedImage imageOfCertification;
+    protected ImageView imageOfCertification;
+    private String imagePath;
     private ArrayList<Appointment> appointments;
     private int listIndex;
     private int max = 50;
 
-    public User(String username, String password, String role, BufferedImage imageOfCertification) {
+    public User(String username, String password, String role, ImageView imageOfCertification) {
         this.username = username;
         this.password = password;
         this.role = role;
         this.imageOfCertification = imageOfCertification;
         this.appointments = new ArrayList <Appointment>(max);
         this.listIndex = 0;
+    }
+
+    public User(String username, String password, String role, ImageView imageOfCertification, String imagePath) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.imageOfCertification = imageOfCertification;
+        this.appointments = new ArrayList <Appointment>(max);
+        this.listIndex = 0;
+        this.imagePath = imagePath;
     }
 
     public User(String username, String password) {
@@ -62,20 +73,18 @@ public class User {
         this.role = role;
     }
 
-    public BufferedImage getImageOfCertification() {
+    public ImageView getImageOfCertification() {
 
         return this.imageOfCertification;
     }
 
-    public void setImageOfCertification(BufferedImage role) {
+    public void setImageOfCertification(ImageView imageOfCertification) {
 
         this.imageOfCertification = imageOfCertification;
     }
 
-    public int getTypeOfImage() {
-
-        return this.imageOfCertification.getType();
-    }
+    public String getImagePath() { return imagePath; }
+    public void setImage(String image) {imagePath = imagePath;}
 
 
     @Override

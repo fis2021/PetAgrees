@@ -14,7 +14,8 @@
             <children>
                 <HBox prefHeight="25.0" prefWidth="136.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#loadAppointmentsListPage" text="Your appointments list" />
+                        <Button fx:id="buttonAppointmentsListList" id="buttonAppointmentsListList" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadAppointmentsListPage" text="Your appointments list">
+                        </Button>
                     </children>
                 </HBox>
                 <HBox prefHeight="25.0" prefWidth="247.0" />
@@ -31,7 +32,8 @@
             <children>
                 <HBox prefHeight="25.0" prefWidth="136.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#loadRequestListPage" text="Your requests list" />
+                        <Button fx:id="buttonRequestListList" id="buttonRequestListList" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadRequestListPage" text="Your requests list">
+                        </Button>
                     </children>
                 </HBox>
                 <HBox prefHeight="25.0" prefWidth="247.0" />
@@ -48,7 +50,8 @@
             <children>
                 <HBox prefHeight="25.0" prefWidth="136.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#loadLoginPage" text="Log out" />
+                        <Button fx:id="buttonLogOut" id="buttonLogOut" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadLoginPage" text="Log out">
+                        </Button>
                     </children>
                 </HBox>
                 <HBox prefHeight="25.0" prefWidth="247.0" />

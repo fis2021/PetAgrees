@@ -46,12 +46,10 @@ public class LoginController {
 
         if (username == null || username.isEmpty()) {
             loginMessage.setText("Please type in a username!");
-            return;
         }
 
         if (password == null || password.isEmpty()) {
             loginMessage.setText("Password cannot be empty");
-            return;
         }
 
         String encoded_password = UserService.encodePassword(username, password);
@@ -59,11 +57,25 @@ public class LoginController {
         try{
             String stored_password = UserService.getHashedUserPassword(username);
             if(stored_password.equals(encoded_password)){
-                if (currentUser.getRole() == "PetSitter") {
-                    loadHomePageForPetSitter();
+                if (currentUser.getRole().equals("PetSitter")) {
+                    try {
+                        Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("homeForPetSitter.fxml"));
+                        Stage stage = (Stage) (buttonLogIn.getScene().getWindow());
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        System.out.println("Error!\n");
+                    }
                 }
-                if (currentUser.getRole() == "Owner"){
-                    loadHomePageForOwner();
+                if (currentUser.getRole().equals("Owner")){
+                    try {
+                        Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("homeForOwner.fxml"));
+                        Stage stage = (Stage) (buttonLogIn.getScene().getWindow());
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        System.out.println("Error!\n");
+                    }
                 }
 
                 return;
@@ -84,18 +96,18 @@ public class LoginController {
     @FXML
     public void loadRegisterPage(){
         try {
-            Stage stage = (Stage) buttonRegister.getScene().getWindow();
-            Parent registerRoot = FXMLLoader.load(getClass().getResource("/fxml/register.fxml"));
-            Scene scene = new Scene(registerRoot, 640, 800);
-            stage.setTitle("PetAgrees - Register");
-            stage.setScene(scene);
+            Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
+            Stage stage = (Stage) (buttonRegister.getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error!\n");
         }
     }
 
     @FXML
     private void loadHomePageForPetSitter() {
+
         try{
             User u = UserService.getUser(usernameField.getText());
             Stage stage = (Stage) buttonLogIn.getScene().getWindow();

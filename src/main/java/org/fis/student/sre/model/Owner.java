@@ -1,13 +1,14 @@
 package org.fis.student.sre.model;
 
-import java.awt.image.BufferedImage;
+import javafx.scene.image.ImageView;
+
 
 public class Owner extends User{
     private int telephoneOwner;
     private String descriptionOwner;
     private String addressOwner;
 
-    public Owner (String username, String password, String role, BufferedImage imageOfCertification, int telephoneOwner, String descriptionOwner, String addressOwner) {
+    public Owner (String username, String password, String role, ImageView imageOfCertification, int telephoneOwner, String descriptionOwner, String addressOwner) {
         super(username, password, role, imageOfCertification);
         this.telephoneOwner = telephoneOwner;
         this.descriptionOwner = descriptionOwner;
