@@ -1,6 +1,5 @@
 package org.fis.student.sre.controllers;
 
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +12,7 @@ import java.io.IOException;
 
 public class HomeControllerForOwner {
 
-    private User currentUser;
+    //private User currentUser;
 
     @FXML
     private BorderPane borderPane;
@@ -25,10 +24,10 @@ public class HomeControllerForOwner {
     private Button buttonLogOut;
 
 
-    public void setUser(User u){
-        currentUser = u;
-    }
-    public User getUser(){ return currentUser;}
+    //public void setUser(User u){
+     //   currentUser = u;
+    //}
+    //public User getUser(){ return currentUser;}
 
     @FXML
     private void loadAvailablePetSitterListPage(){
