@@ -5,6 +5,7 @@ import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.fis.student.sre.exceptions.*;
 import org.fis.student.sre.model.Appointment;
+import org.fis.student.sre.model.Owner;
 import org.fis.student.sre.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -51,6 +52,18 @@ public class UserService {
         for (User user : userRepository.find()) {
             if (Objects.equals(username, user.getUsername()))
                 return user;
+
+        }
+        return null;
+    }
+
+    public static Owner getOwner(String username){
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername())) {
+                Owner owner = (Owner) user;
+                return owner;
+            }
+
 
         }
         return null;
