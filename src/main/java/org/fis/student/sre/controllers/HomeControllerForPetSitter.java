@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class HomeControllerForPetSitter {
 
-    private User currentUser;
+   // private User currentUser;
 
     @FXML
     private BorderPane borderPane;
@@ -25,11 +25,11 @@ public class HomeControllerForPetSitter {
     private Button buttonLogOut;
 
 
-    public void setUser(User u){
+    /*public void setUser(User u){
         currentUser = u;
     }
     public User getUser(){ return currentUser;}
-
+*/
     @FXML
     private void loadAppointmentsListPage(){
         try {
