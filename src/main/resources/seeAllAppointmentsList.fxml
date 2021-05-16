@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane focusTraversable="true" prefHeight="500.0" prefWidth="700.0"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.fis.student.sre.controllers.SeeAllAppointmentsController">
+<AnchorPane focusTraversable="true" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fis.student.sre.controllers.SeeAllAppointmentsController">
     <children>
         <SplitPane dividerPositions="0.41304347826086957" layoutX="85.0" layoutY="121.0" prefHeight="500.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <children>
-                        <TextField fx:id="searchTextField" id="search" layoutX="77.0" layoutY="14.0" prefHeight="26.0" prefWidth="186.0" />
+                        <TextField id="search" fx:id="searchTextField" layoutX="77.0" layoutY="14.0" prefHeight="26.0" prefWidth="186.0" />
                         <Label layoutX="24.0" layoutY="19.0" text="Search" />
-                        <TableView fx:id="appointmentTable" id="appointment table" layoutX="43.0" layoutY="62.0" prefHeight="436.0" prefWidth="286.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="62.0">
+                        <TextField id="usernameField" fx:id="usernameField" layoutX="77.0" layoutY="55.0" prefHeight="26.0" prefWidth="186.0" />
+                        <Label layoutX="24.0" layoutY="55.0" text="username" />
+                        <TableView id="appointment table" fx:id="appointmentTable" layoutY="84.0" prefHeight="436.0" prefWidth="286.0" AnchorPane.bottomAnchor="-22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="84.0">
                             <columns>
                                 <TableColumn fx:id="appointmentNameColumn" prefWidth="284.80000606775286" text="Your Appointments" />
                             </columns>
                         </TableView>
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" >
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <children>
                         <GridPane alignment="BASELINE_CENTER" focusTraversable="true" layoutX="36.0" layoutY="39.0" prefHeight="367.0" prefWidth="323.0">
                             <columnConstraints>
@@ -36,6 +34,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
                             </rowConstraints>
                             <children>
                                 <Label alignment="CENTER" contentDisplay="CENTER" text="username owner" textAlignment="CENTER" />
@@ -45,18 +44,18 @@
                                 <Label text="address" GridPane.rowIndex="4" />
                                 <Label text="date of first day" GridPane.rowIndex="5" />
                                 <Label text="number of days" GridPane.rowIndex="6" />
-                                <Label fx:id="usernameOwnerLabel" id="usernameOwner" alignment="CENTER" contentDisplay="CENTER" text="Label" textAlignment="CENTER" GridPane.columnIndex="1" />
-                                <Label fx:id="telephoneOwnerLabel" id="telephoneOwner" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <Label fx:id="descriptionLabel" id="description" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                <Label fx:id="statusLabel" id="status" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                <Label fx:id="addressLabel" id="address" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                <Label fx:id="dataPrimaZiLabel" id="dataPrimaZi" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                <Label fx:id="numarDeZileLabel" id="numarDeZile" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                <Label id="usernameOwner" fx:id="usernameOwnerLabel" alignment="CENTER" contentDisplay="CENTER" text="Label" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                <Label id="telephoneOwner" fx:id="telephoneOwnerLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label id="description" fx:id="descriptionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label id="status" fx:id="statusLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label id="address" fx:id="addressLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label id="dataPrimaZi" fx:id="dataPrimaZiLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label id="numarDeZile" fx:id="numarDeZileLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                             </children>
                         </GridPane>
-                        <Button fx:id="buttonBack" id="buttonBack" layoutX="151.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadBackAction" text="Back">
+                        <Button id="buttonBack" fx:id="buttonBack" layoutX="151.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadBackAction" text="Back">
                         </Button>
-                        <Button fx:id="buttonLogOut" id="buttonLogOut" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadLoginAction" text="Log out">
+                        <Button id="buttonLogOut" fx:id="buttonLogOut" layoutX="216.0" layoutY="440.0" mnemonicParsing="false" onAction="#loadLoginAction" text="Log out">
                         </Button>
                     </children>
                 </AnchorPane>
